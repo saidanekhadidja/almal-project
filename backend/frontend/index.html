@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شركة الأمل - المنصة المتكاملة للصحة النفسية</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* [سأختصر CSS هنا لتوفير المساحة - لكن في الملف الفعلي، استخدم نفس CSS الكامل الذي أرسلته سابقاً] */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Tajawal', sans-serif; background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); color: #14532d; min-height: 100vh; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 24px; }
+        header { background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; flex-wrap: wrap; gap: 1rem; }
+        .logo { display: flex; align-items: center; gap: 10px; font-size: 1.8rem; font-weight: 800; cursor: pointer; }
+        .brain-logo { font-size: 2rem; animation: pulse 2s infinite; color: #22c55e; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 0.7; } 50% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); opacity: 0.7; } }
+        .logo-text { background: linear-gradient(135deg, #16a34a, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 2rem; flex-wrap: wrap; align-items: center; }
+        .nav-link { text-decoration: none; color: #166534; font-weight: 500; cursor: pointer; transition: 0.3s; }
+        .nav-link:hover { color: #16a34a; transform: translateY(-2px); }
+        .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 0.75rem 1.5rem; border-radius: 12px; font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer; transition: all 0.3s ease; font-family: inherit; }
+        .btn-primary { background: linear-gradient(135deg, #16a34a, #22c55e); color: white; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(22,163,74,0.3); }
+        .btn-outline { background: transparent; border: 2px solid #16a34a; color: #16a34a; }
+        .btn-outline:hover { background: #dcfce7; transform: translateY(-2px); }
+        .btn-success { background: linear-gradient(135deg, #16a34a, #22c55e); color: white; }
+        .btn-danger { background: linear-gradient(135deg, #dc2626, #ef4444); color: white; }
+        .btn-sm { padding: 0.4rem 1rem; font-size: 0.85rem; }
+        .auth-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .user-info { display: flex; align-items: center; gap: 15px; }
+        .welcome-message { background: linear-gradient(135deg, #dcfce7, #bbf7d0); padding: 0.5rem 1.5rem; border-radius: 40px; color: #15803d; font-weight: 600; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(4px); z-index: 2000; justify-content: center; align-items: center; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; border-radius: 24px; padding: 2rem; max-width: 750px; width: 90%; max-height: 85vh; overflow-y: auto; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.25); animation: modalFadeIn 0.3s ease; }
+        @keyframes modalFadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .modal-close { position: absolute; top: 1rem; left: 1rem; font-size: 1.5rem; cursor: pointer; color: #94a3b8; transition: 0.3s; }
+        .modal-close:hover { color: #dc2626; }
+        .modal-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; color: #14532d; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #166534; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.8rem 1rem; border: 2px solid #bbf7d0; border-radius: 12px; font-family: inherit; font-size: 1rem; transition: 0.3s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: #16a34a; box-shadow: 0 0 0 3px rgba(22,163,74,0.1); }
+        .alert { padding: 1rem; border-radius: 12px; margin-bottom: 1rem; display: none; }
+        .alert-error { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+        .alert-success { background: #dcfce7; color: #166534; border: 1px solid #bbf7d0; }
+        .alert-warning { background: #fef3c7; color: #92400e; border: 1px solid #fde047; }
+        .alert-info { background: #dcfce7; color: #15803d; border: 1px solid #bbf7d0; }
+        .form-link { color: #16a34a; cursor: pointer; font-weight: 500; }
+        .hero { background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%); padding: 5rem 0; text-align: center; border-radius: 0 0 40px 40px; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .hero-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .highlight { background: linear-gradient(135deg, #16a34a, #22c55e); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .about-section { background: white; border-radius: 28px; padding: 2.5rem; margin: 2rem 0; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .choices-section { padding: 3rem 0; }
+        .section-title { text-align: center; font-size: 2.5rem; margin-bottom: 2rem; color: #14532d; }
+        .choices-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; }
+        .choice-card { background: white; border-radius: 24px; padding: 2rem; text-align: center; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 1px solid rgba(22,163,74,0.1); }
+        .choice-card:hover { transform: translateY(-8px); box-shadow: 0 20px 35px rgba(22,163,74,0.15); border-color: #16a34a; }
+        .choice-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem; color: #16a34a; }
+        .features-section { background: #f0fdf4; padding: 4rem 0; margin: 2rem 0; border-radius: 40px; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .feature-card { text-align: center; padding: 1.5rem; background: white; border-radius: 20px; transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .feature-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; font-size: 1.8rem; color: #16a34a; }
+        .patient-page { padding: 2rem 0; }
+        .page-title { font-size: 2.5rem; font-weight: 800; text-align: center; margin-bottom: 0.5rem; color: #14532d; }
+        .page-subtitle { text-align: center; margin-bottom: 2rem; color: #166534; }
+        .price-tag { display: inline-block; background: linear-gradient(135deg, #dcfce7, #bbf7d0); color: #15803d; padding: 5px 15px; border-radius: 40px; font-weight: 700; }
+        .dashboard-container { display: grid; grid-template-columns: 280px 1fr; gap: 24px; padding: 2rem 0; }
+        .sidebar { background: white; border-radius: 28px; padding: 1.5rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); height: fit-content; position: sticky; top: 90px; }
+        .specialist-avatar { text-align: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 2px solid #bbf7d0; }
+        .sidebar-menu { list-style: none; }
+        .sidebar-menu li { padding: 0.9rem 1rem; margin: 0.3rem 0; border-radius: 16px; display: flex; align-items: center; gap: 12px; cursor: pointer; font-weight: 500; color: #166534; transition: 0.3s; }
+        .sidebar-menu li:hover, .sidebar-menu li.active { background: #dcfce7; color: #16a34a; transform: translateX(-5px); }
+        .dashboard-main { background: white; border-radius: 28px; padding: 1.8rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .card { background: #f0fdf4; border-radius: 20px; padding: 1.2rem; margin-bottom: 1rem; border: 1px solid #bbf7d0; transition: 0.3s; cursor: pointer; }
+        .card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.05); transform: translateY(-2px); }
+        .test-card { border-right: 4px solid #16a34a; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem; }
+        .stat-card { background: linear-gradient(135deg, #dcfce7, #bbf7d0); border-radius: 20px; padding: 1.5rem; text-align: center; }
+        .stat-number { font-size: 2rem; font-weight: 800; color: #16a34a; }
+        .stat-label { color: #166534; margin-top: 0.5rem; }
+        .notification-toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 10000; min-width: 300px; text-align: center; direction: rtl; box-shadow: 0 4px 15px rgba(0,0,0,0.2); animation: slideDown 0.3s ease; }
+        @keyframes slideDown { from { opacity: 0; transform: translateX(-50%) translateY(-50px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        footer { background: #052e16; color: #86efac; padding: 2rem 0; margin-top: 3rem; text-align: center; }
+        .patient-tabs { display: flex; gap: 1rem; border-bottom: 2px solid #bbf7d0; margin-bottom: 1.5rem; flex-wrap: wrap; }
+        .patient-tab { padding: 0.75rem 1.5rem; background: none; border: none; font-weight: 600; color: #166534; cursor: pointer; transition: 0.3s; border-radius: 12px 12px 0 0; }
+        .patient-tab.active { color: #16a34a; border-bottom: 3px solid #16a34a; background: #dcfce7; }
+        .patient-dashboard { background: white; border-radius: 28px; padding: 1.8rem; margin-top: 2rem; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .test-question { background: #f0fdf4; padding: 1rem; border-radius: 12px; margin-bottom: 1rem; border: 1px solid #bbf7d0; }
+        .test-question p { margin-bottom: 0.75rem; font-weight: 600; }
+        .test-question label { display: inline-flex; align-items: center; gap: 0.5rem; margin-left: 1.5rem; cursor: pointer; }
+        @media (max-width: 900px) { .dashboard-container { grid-template-columns: 1fr; } .sidebar { position: static; } .hero-title { font-size: 2.2rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo" onclick="showHomePage()">
+                    <span class="brain-logo"><i class="fas fa-brain"></i></span>
+                    <span class="logo-text">شركة الأمل</span>
+                </div>
+                <div class="nav-links">
+                    <a class="nav-link" onclick="showHomePage()">الرئيسية</a>
+                    <a class="nav-link" onclick="openContactModal()">اتصل بنا</a>
+                </div>
+                <div class="auth-buttons" id="authButtons">
+                    <button class="btn btn-outline" onclick="openLoginModal()"><i class="fas fa-sign-in-alt"></i> دخول</button>
+                    <button class="btn btn-primary" onclick="openRegisterModal()"><i class="fas fa-user-plus"></i> انضم كمريض</button>
+                    <button class="btn btn-outline" onclick="openSpecialistLogin()"><i class="fas fa-user-md"></i> دخول المختصين</button>
+                </div>
+                <div class="user-info" id="userInfo" style="display: none;">
+                    <span class="welcome-message" id="welcomeMessage"></span>
+                    <button class="btn btn-outline" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="homePage">
+        <section class="hero">
+            <div class="container">
+                <h1 class="hero-title">منصة <span class="highlight">الأمل</span> للصحة النفسية</h1>
+                <p style="font-size:1.2rem; margin-bottom:2rem; color:#166534;">دعم نفسي متكامل بسرية تامة</p>
+                <button class="btn btn-primary" onclick="openRegisterModal()"><i class="fas fa-play-circle"></i> ابدأ الآن مجاناً</button>
+            </div>
+        </section>
+        <div class="container">
+            <div class="about-section">
+                <h2 style="color: #14532d; margin-bottom: 1rem;">عن <span class="highlight">شركة الأمل</span></h2>
+                <p style="color: #166534; line-height: 1.8;">نحن منصة رائدة في مجال الصحة النفسية، نقدم خدمات استشارية متخصصة بأعلى معايير الجودة والسرية.</p>
+            </div>
+        </div>
+        <div class="features-section">
+            <div class="container">
+                <h2 class="section-title">ما <span>نقدمه</span></h2>
+                <div class="features-grid">
+                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-clipboard-list"></i></div><h3>اختبارات نفسية</h3><p>أكثر من 15 اختباراً نفسياً</p></div>
+                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-video"></i></div><h3>جلسات أونلاين</h3><p>عبر Google Meet</p></div>
+                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>تقييم دقيق</h3><p>نتائج فورية</p></div>
+                    <div class="feature-card"><div class="feature-icon"><i class="fas fa-lock"></i></div><h3>سرية تامة</h3><p>معلوماتك آمنة</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="patientPage" style="display: none;">
+        <div class="container">
+            <div class="patient-page">
+                <h1 class="page-title">لوحة تحكم المريض</h1>
+                <p class="page-subtitle">احصل على استشارة أو قم بإجراء الاختبارات</p>
+                <div class="patient-dashboard">
+                    <div class="patient-tabs">
+                        <button class="patient-tab active" onclick="showPatientTab('tests')"><i class="fas fa-clipboard-list"></i> الاختبارات</button>
+                        <button class="patient-tab" onclick="showPatientTab('results')"><i class="fas fa-chart-bar"></i> نتائجي</button>
+                        <button class="patient-tab" onclick="showPatientTab('problems')"><i class="fas fa-file-invoice"></i> استشاراتي</button>
+                    </div>
+                    <div id="patientTestsPanel" class="patient-panel"></div>
+                    <div id="patientResultsPanel" class="patient-panel" style="display: none;"></div>
+                    <div id="patientProblemsPanel" class="patient-panel" style="display: none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="contactModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeContactModal()">&times;</span>
+            <h2 class="modal-title"><i class="fas fa-headset"></i> اتصل بنا</h2>
+            <div style="display:grid; gap:0.8rem;">
+                <div><i class="fas fa-phone-alt" style="color:#16a34a;width:30px;"></i><strong>الهاتف:</strong> 0668623816</div>
+                <div><i class="fas fa-envelope" style="color:#16a34a;width:30px;"></i><strong>البريد:</strong> contact@almal.dz</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeLoginModal()">&times;</span>
+            <h2 class="modal-title">تسجيل الدخول</h2>
+            <div id="loginError" class="alert alert-error"></div>
+            <form onsubmit="handleLogin(event)">
+                <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="loginEmail" required></div>
+                <div class="form-group"><label>كلمة المرور</label><input type="password" id="loginPassword" required></div>
+                <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-sign-in-alt"></i> دخول</button>
+            </form>
+            <div style="margin-top:1rem; text-align:center"><a class="form-link" onclick="closeLoginModal(); openRegisterModal()">ليس لديك حساب؟ إنشاء حساب</a></div>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeRegisterModal()">&times;</span>
+            <h2 class="modal-title">إنشاء حساب مريض</h2>
+            <div id="regError" class="alert alert-error"></div>
+            <div id="regSuccess" class="alert alert-success"></div>
+            <form onsubmit="handleRegister(event)">
+                <div class="form-group"><label>الاسم الكامل</label><input type="text" id="regName" required></div>
+                <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="regEmail" required></div>
+                <div class="form-group"><label>رقم الهاتف</label><input type="tel" id="regPhone" required></div>
+                <div class="form-group"><label>العمر</label><input type="number" id="regAge" min="1" max="120" required></div>
+                <div class="form-group"><label>الجنس</label><select id="regGender" required><option value="">اختر</option><option value="ذكر">ذكر</option><option value="أنثى">أنثى</option></select></div>
+                <div class="form-group"><label>كلمة المرور</label><input type="password" id="regPassword" required></div>
+                <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-user-plus"></i> إنشاء حساب</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="specialistLoginModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeSpecialistLogin()">&times;</span>
+            <h2 class="modal-title">دخول المختصين</h2>
+            <div id="specLoginError" class="alert alert-error"></div>
+            <form onsubmit="handleSpecialistLogin(event)">
+                <div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="specEmail" required></div>
+                <div class="form-group"><label>كلمة المرور</label><input type="password" id="specPassword" required></div>
+                <button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-user-md"></i> دخول</button>
+            </form>
+            <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid #bbf7d0">
+                <p style="font-size:0.85rem; color:#166534;">📋 حسابات تجريبية:</p>
+                <p><strong>🧠 نفسي:</strong> chaimaasaidane45@gmail.com / 12345</p>
+                <p><strong>🤝 اجتماعي:</strong> Krattousouad46@gmail.com / 12345</p>
+                <p><strong>💼 عمل:</strong> bouchra.mokri05@gmail.com / 12345</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="specialistDashboard" style="display: none;">
+        <div class="container">
+            <div class="dashboard-container">
+                <div class="sidebar">
+                    <div class="specialist-avatar">
+                        <i class="fas fa-user-circle fa-4x" style="color:#16a34a"></i>
+                        <h3 id="specName"></h3>
+                        <p id="specType" style="color:#166534; font-size:0.85rem"></p>
+                    </div>
+                    <ul class="sidebar-menu" id="specialistMenu"></ul>
+                </div>
+                <div class="dashboard-main" id="dashboardContent"></div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 شركة الأمل - المنصة المتكاملة للصحة النفسية</p>
+        </div>
+    </footer>
+
+    <script>
+        // ============ API Layer ============
+        const API_BASE = 'http://localhost:3000/api';
+        let authToken = localStorage.getItem('token') || null;
+
+        async function api(path, options = {}) {
+            const res = await fetch(API_BASE + path, {
+                ...options,
+                headers: {
+                    'Content-Type': 'application/json',
+                    ...(authToken ? { 'Authorization': `Bearer ${authToken}` } : {}),
+                    ...(options.headers || {})
+                }
+            });
+            if (!res.ok) {
+                const err = await res.json().catch(() => ({}));
+                throw new Error(err.error || 'خطأ في الشبكة');
+            }
+            return res.json();
+        }
+
+        // ============ State ============
+        let currentUser = null;
+        let currentSpecialist = null;
+        let currentTestSession = null;
+
+        // ============ الاختبارات (15 اختباراً) ============
+        const OBJECTIVE_TESTS = [
+            { id: 'beck_depression', name: 'اختبار بيك للاكتئاب', category: 'الاكتئاب', questionsCount: 21, description: 'تقييم أعراض الاكتئاب',
+                questions: [
+                    { text: 'لا أشعر بالحزن.', options: ['0', '1', '2', '3'] }, { text: 'أشعر بالحزن.', options: ['0', '1', '2', '3'] },
+                    { text: 'أشعر بالحزن طوال الوقت ولا أستطيع التخلص منه.', options: ['0', '1', '2', '3'] }, { text: 'أشعر بالحزن لدرجة لا أطيقها.', options: ['0', '1', '2', '3'] },
+                    { text: 'لا أشعر بأنني فاشل بشكل عام.', options: ['0', '1', '2', '3'] }, { text: 'أشعر بأنني أواجه من الفشل أكثر مما يواجهه الإنسان العادي.', options: ['0', '1', '2', '3'] },
+                    { text: 'عندما أنظر إلى حياتي الماضية، فإن كل ما أراه الكثير من الفشل.', options: ['0', '1', '2', '3'] }, { text: 'أشعر بأنني إنسان فاشل فشلاً تاماً.', options: ['0', '1', '2', '3'] },
+                    { text: 'ما زالت الأشياء تعطيني شعوراً بالرضا كما كانت عادة.', options: ['0', '1', '2', '3'] }, { text: 'لا أشعر بمتعة في الأشياء على النحو الذي كنت أشعر به عادة.', options: ['0', '1', '2', '3'] },
+                    { text: 'لم أعد أشعر بأية متعة حقيقية في أي شيء على الإطلاق.', options: ['0', '1', '2', '3'] }, { text: 'لدي شعور بعدم الرضا والملل من كل الأشياء.', options: ['0', '1', '2', '3'] },
+                    { text: 'لا يوجد لدي أي شعور بالذنب.', options: ['0', '1', '2', '3'] }, { text: 'أشعر بالذنب في بعض الأوقات.', options: ['0', '1', '2', '3'] },
+                    { text: 'أشعر بالذنب في معظم الأوقات.', options: ['0', '1', '2', '3'] }, { text: 'أشعر بالذنب في كافة الأوقات.', options: ['0', '1', '2', '3'] },
+                    { text: 'لا أشعر بأنني أستحق عقاباً من أي نوع.', options: ['0', '1', '2', '3'] }, { text: 'أشعر بأنني أستحق العقاب أحيانا.', options: ['0', '1', '2', '3'] },
+                    { text: 'كثيرا ما أشعر بأنني أستحق العقاب.', options: ['0', '1', '2', '3'] }, { text: 'أحس بأنني أعاقب وأعذب في حياتي وإنني أستحق ذلك.', options: ['0', '1', '2', '3'] },
+                    { text: 'لا أشعر بخيبة الأمل في نفسي.', options: ['0', '1', '2', '3'] }
+                ] },
+            { id: 'taylor_anxiety', name: 'اختبار تايلور للقلق', category: 'القلق', questionsCount: 50, description: 'مقياس تايلور للقلق الظاهر',
+                questions: Array.from({length: 50}, (_, i) => ({ text: `العبارة ${i+1} من مقياس تايلور`, options: ['0', '1'] })) },
+            { id: 'maslow_security', name: 'مقياس ماسلو للشعور بالأمن', category: 'الأمن النفسي', questionsCount: 75, description: 'مقياس ماسلو',
+                questions: Array.from({length: 75}, (_, i) => ({ text: `العبارة ${i+1} من مقياس ماسلو`, options: ['0', '1'] })) },
+            { id: 'school_attitude', name: 'اتجاهات الطلبة نحو المدرسة', category: 'تربوي', questionsCount: 30, description: 'قياس اتجاهات الطلبة',
+                questions: Array.from({length: 30}, (_, i) => ({ text: `العبارة ${i+1} من مقياس المدرسة`, options: ['0', '1', '2', '3', '4'] })) },
+            { id: 'needs_inventory', name: 'قائمة الحاجات الإرشادية', category: 'إرشادي', questionsCount: 50, description: 'الحاجات الإرشادية',
+                questions: Array.from({length: 50}, (_, i) => ({ text: `العبارة ${i+1} من القائمة`, options: ['0', '1', '2', '3', '4'] })) },
+            { id: 'aggressive_behavior', name: 'مقياس السلوك العدواني', category: 'سلوكي', questionsCount: 33, description: 'السلوك العدواني',
+                questions: Array.from({length: 33}, (_, i) => ({ text: `العبارة ${i+1} من المقياس`, options: ['0', '1', '2'] })) },
+            { id: 'personality_test', name: 'اختبار الشخصية (أيزنك)', category: 'شخصية', questionsCount: 57, description: 'اختبار الشخصية',
+                questions: Array.from({length: 57}, (_, i) => ({ text: `السؤال ${i+1}`, options: ['0', '1'] })) },
+            { id: 'rotter_locus', name: 'مقياس روتان للضبط', category: 'شخصية', questionsCount: 29, description: 'ضبط موضع السيطرة',
+                questions: Array.from({length: 29}, (_, i) => ({ text: `العبارة ${i+1}`, options: ['0', '1'] })) },
+            { id: 'career_maturity', name: 'استبانة الاتجاه المهني', category: 'مهني', questionsCount: 25, description: 'النضج المهني',
+                questions: Array.from({length: 25}, (_, i) => ({ text: `العبارة ${i+1}`, options: ['0', '1'] })) },
+            { id: 'self_concept', name: 'قائمة مفهوم الذات', category: 'شخصية', questionsCount: 112, description: 'مفهوم الذات',
+                questions: Array.from({length: 112}, (_, i) => ({ text: `العبارة ${i+1}`, options: ['0', '1'] })) },
+            { id: 'positive_thinking', name: 'مقياس التفكير الإيجابي', category: 'شخصية', questionsCount: 30, description: 'التفكير الإيجابي',
+                questions: Array.from({length: 30}, (_, i) => ({ text: `العبارة ${i+1}`, options: ['0', '1'] })) },
+            { id: 'assertiveness', name: 'مقياس توكيد الذات', category: 'شخصية', questionsCount: 30, description: 'توكيد الذات',
+                questions: Array.from({length: 30}, (_, i) => ({ text: `العبارة ${i+1}`, options: ['0', '1', '2', '3', '4'] })) },
+            { id: 'stress_scale', name: 'مقياس الضغوط النفسية', category: 'نفسي', questionsCount: 60, description: 'الضغوط النفسية',
+                questions: Array.from({length: 60}, (_, i) => ({ text: `العبارة ${i+1}`, options: ['0', '1', '2', '3'] })) },
+            { id: 'rebellion', name: 'مقياس التمرد', category: 'سلوكي', questionsCount: 20, description: 'التمرد',
+                questions: Array.from({length: 20}, (_, i) => ({ text: `العبارة ${i+1}`, options: ['0', '1', '2', '3', '4'] })) },
+            { id: 'career_choice', name: 'اختبار تحديد التخصص الجامعي', category: 'مهني', questionsCount: 40, description: 'تحديد التخصص',
+                questions: Array.from({length: 40}, (_, i) => ({ text: `السؤال ${i+1}`, options: ['0', '1', '2'] })) }
+        ];
+
+        // ============ Notifications ============
+        function showNotification(message, type = 'info') {
+            const old = document.querySelector('.notification-toast');
+            if (old) old.remove();
+            const n = document.createElement('div');
+            n.className = `alert alert-${type} notification-toast`;
+            n.innerHTML = message;
+            document.body.appendChild(n);
+            setTimeout(() => n.remove(), 4000);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // ============ Navigation ============
+        function showHomePage() {
+            document.getElementById('homePage').style.display = 'block';
+            document.getElementById('patientPage').style.display = 'none';
+            document.getElementById('specialistDashboard').style.display = 'none';
+            document.getElementById('authButtons').style.display = 'flex';
+            document.getElementById('userInfo').style.display = 'none';
+        }
+
+        function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
+        function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
+        function openLoginModal() { document.getElementById('loginModal').classList.add('active'); }
+        function closeLoginModal() { document.getElementById('loginModal').classList.remove('active'); }
+        function openRegisterModal() { document.getElementById('registerModal').classList.add('active'); }
+        function closeRegisterModal() { document.getElementById('registerModal').classList.remove('active'); }
+        function openSpecialistLogin() { document.getElementById('specialistLoginModal').classList.add('active'); }
+        function closeSpecialistLogin() { document.getElementById('specialistLoginModal').classList.remove('active'); }
+
+        // ============ Auth ============
+        async function handleRegister(event) {
+            event.preventDefault();
+            try {
+                await api('/register', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        name: document.getElementById('regName').value.trim(),
+                        email: document.getElementById('regEmail').value.trim(),
+                        phone: document.getElementById('regPhone').value.trim(),
+                        age: parseInt(document.getElementById('regAge').value),
+                        gender: document.getElementById('regGender').value,
+                        password: document.getElementById('regPassword').value
+                    })
+                });
+                document.getElementById('regSuccess').textContent = '✅ تم إنشاء الحساب بنجاح!';
+                document.getElementById('regSuccess').style.display = 'block';
+                setTimeout(() => { closeRegisterModal(); openLoginModal(); }, 1500);
+            } catch (e) {
+                document.getElementById('regError').textContent = '⚠️ ' + e.message;
+                document.getElementById('regError').style.display = 'block';
+            }
+        }
+
+        async function handleLogin(event) {
+            event.preventDefault();
+            try {
+                const data = await api('/login', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: document.getElementById('loginEmail').value.trim(),
+                        password: document.getElementById('loginPassword').value
+                    })
+                });
+                authToken = data.token;
+                localStorage.setItem('token', authToken);
+                localStorage.setItem('role', 'patient');
+                currentUser = data.user;
+                closeLoginModal();
+                showPatientPage();
+                showNotification(`مرحباً ${currentUser.name}!`, 'success');
+            } catch (e) {
+                document.getElementById('loginError').textContent = '⚠️ ' + e.message;
+                document.getElementById('loginError').style.display = 'block';
+            }
+        }
+
+        async function handleSpecialistLogin(event) {
+            event.preventDefault();
+            try {
+                const data = await api('/specialist/login', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        email: document.getElementById('specEmail').value.trim(),
+                        password: document.getElementById('specPassword').value
+                    })
+                });
+                authToken = data.token;
+                localStorage.setItem('token', authToken);
+                localStorage.setItem('role', 'specialist');
+                currentSpecialist = data.specialist;
+                closeSpecialistLogin();
+                showSpecialistDashboard();
+                showNotification(`مرحباً ${currentSpecialist.name}!`, 'success');
+            } catch (e) {
+                document.getElementById('specLoginError').textContent = '⚠️ ' + e.message;
+                document.getElementById('specLoginError').style.display = 'block';
+            }
+        }
+
+        function logout() {
+            authToken = null;
+            currentUser = null;
+            currentSpecialist = null;
+            localStorage.removeItem('token');
+            localStorage.removeItem('role');
+            showHomePage();
+        }
+
+        // ============ Load on startup ============
+        function loadStoredData() {
+            const token = localStorage.getItem('token');
+            const role = localStorage.getItem('role');
+            if (!token || !role) { showHomePage(); return; }
+            authToken = token;
+            try {
+                const payload = JSON.parse(atob(token.split('.')[1]));
+                if (role === 'specialist') {
+                    currentSpecialist = { id: payload.id, name: payload.name };
+                    showSpecialistDashboard();
+                } else {
+                    currentUser = { id: payload.id, name: payload.name };
+                    showPatientPage();
+                }
+            } catch { showHomePage(); }
+        }
+
+        // ============ Patient Page ============
+        function showPatientPage() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('patientPage').style.display = 'block';
+            document.getElementById('specialistDashboard').style.display = 'none';
+            document.getElementById('authButtons').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('welcomeMessage').innerHTML = `<i class="fas fa-user"></i> مرحباً ${currentUser.name}`;
+            showPatientTab('tests');
+        }
+
+        function showPatientTab(tab) {
+            document.querySelectorAll('.patient-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.patient-panel').forEach(p => p.style.display = 'none');
+            const map = { tests: 1, results: 2, problems: 3 };
+            document.querySelector(`.patient-tab:nth-child(${map[tab]})`).classList.add('active');
+            const panelMap = { tests: 'patientTestsPanel', results: 'patientResultsPanel', problems: 'patientProblemsPanel' };
+            document.getElementById(panelMap[tab]).style.display = 'block';
+            if (tab === 'tests') renderPatientTests();
+            else if (tab === 'results') renderPatientResults();
+            else if (tab === 'problems') renderPatientProblems();
+        }
+
+        // ============ Patient Tests ============
+        function renderPatientTests() {
+            const container = document.getElementById('patientTestsPanel');
+            let html = `<h3><i class="fas fa-clipboard-list"></i> الاختبارات المتاحة</h3>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap:1rem;">`;
+            OBJECTIVE_TESTS.forEach(test => {
+                html += `<div class="card test-card" onclick="startPatientTest('${test.id}')">
+                    <h3>${test.name}</h3>
+                    <span class="price-tag" style="font-size:0.8rem;">${test.category}</span>
+                    <p style="margin-top:0.5rem; font-size:0.9rem;">${test.description}</p>
+                    <small><i class="fas fa-list-ol"></i> ${test.questionsCount} سؤالاً</small>
+                </div>`;
+            });
+            html += `</div>`;
+            container.innerHTML = html;
+        }
+
+        function startPatientTest(testId) {
+            const test = OBJECTIVE_TESTS.find(t => t.id === testId);
+            if (!test) return;
+            currentTestSession = { test, answers: {} };
+            let html = `<div class="modal active" id="testModal">
+                <div class="modal-content" style="max-width:800px;">
+                    <span class="modal-close" onclick="document.getElementById('testModal').remove()">&times;</span>
+                    <h2>${test.name}</h2>
+                    <form id="testForm" onsubmit="submitPatientTest(event)">
+                        <div style="max-height:60vh; overflow-y:auto; padding:10px;">`;
+            test.questions.forEach((q, idx) => {
+                html += `<div class="test-question"><p>${idx + 1}. ${escapeHtml(q.text)}</p><div>`;
+                test.options.forEach((opt, optIdx) => {
+                    html += `<label><input type="radio" name="q_${idx}" value="${optIdx}" required> ${opt}</label>`;
+                });
+                html += `</div></div>`;
+            });
+            html += `</div>
+                    <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+                        <button type="submit" class="btn btn-primary" style="flex:1;"><i class="fas fa-check"></i> حساب النتيجة</button>
+                        <button type="button" class="btn btn-outline" onclick="document.getElementById('testModal').remove()">إلغاء</button>
+                    </div>
+                </form>
+                <div id="testResultArea"></div>
+            </div></div>`;
+            document.body.insertAdjacentHTML('beforeend', html);
+        }
+
+        async function submitPatientTest(event) {
+            event.preventDefault();
+            if (!currentTestSession) return;
+            const { test } = currentTestSession;
+            let totalScore = 0;
+            let details = [];
+            test.questions.forEach((q, idx) => {
+                const selected = document.querySelector(`input[name="q_${idx}"]:checked`);
+                const val = parseInt(selected.value);
+                totalScore += val;
+                details.push({ question: q.text, answer: test.options[val], value: val });
+            });
+            const maxScore = test.questions.length * (test.options.length - 1);
+            let level = 'منخفض';
+            const pct = (totalScore / maxScore) * 100;
+            if (pct > 75) level = 'مرتفع جداً';
+            else if (pct > 50) level = 'مرتفع';
+            else if (pct > 25) level = 'متوسط';
+            try {
+                await api('/test-results', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        test_id: test.id,
+                        test_name: test.name,
+                        patient_id: currentUser.id,
+                        patient_name: currentUser.name,
+                        total_score: totalScore,
+                        max_score: maxScore,
+                        level: level,
+                        details: details
+                    })
+                });
+                const resultArea = document.getElementById('testResultArea');
+                resultArea.innerHTML = `<div class="alert alert-success" style="text-align:center; margin-top:1rem;">
+                    <h3>✅ تم إكمال الاختبار</h3>
+                    <p>النتيجة: <strong>${totalScore}</strong> / <strong>${maxScore}</strong></p>
+                    <p>المستوى: <strong>${level}</strong></p>
+                    <button class="btn btn-primary" onclick="document.getElementById('testModal').remove(); showPatientTab('results');">عرض النتائج</button>
+                </div>`;
+                document.getElementById('testForm').style.display = 'none';
+            } catch (e) {
+                showNotification('❌ فشل حفظ النتيجة: ' + e.message, 'error');
+            }
+        }
+
+        async function renderPatientResults() {
+            const container = document.getElementById('patientResultsPanel');
+            try {
+                const results = await api('/test-results/my');
+                let html = `<h3><i class="fas fa-chart-bar"></i> نتائج اختباراتي</h3>`;
+                if (results.length === 0) {
+                    html += `<div class="card">📭 لم تقم بإجراء أي اختبار بعد.</div>`;
+                } else {
+                    results.forEach(r => {
+                        html += `<div class="card">
+                            <h3>${r.test_name}</h3>
+                            <p>النتيجة: <strong>${r.total_score}</strong> / ${r.max_score}</p>
+                            <span class="price-tag">${r.level}</span>
+                            <small>📅 ${new Date(r.created_at).toLocaleDateString('ar')}</small>
+                        </div>`;
+                    });
+                }
+                container.innerHTML = html;
+            } catch (e) { container.innerHTML = `<div class="card">خطأ: ${e.message}</div>`; }
+        }
+
+        async function renderPatientProblems() {
+            const container = document.getElementById('patientProblemsPanel');
+            try {
+                const userProblems = await api('/my-consultations');
+                let html = `<h3>استشاراتي</h3>`;
+                if (userProblems.length === 0) {
+                    html += `<div class="card">📭 لم ترسل أي استشارة</div>`;
+                } else {
+                    userProblems.forEach(p => {
+                        let preview = p.method === 'text' ? escapeHtml(p.content) : (p.method === 'voice' ? '🎙️ تسجيل صوتي' : '📎 ملف مرفوع');
+                        html += `<div class="card"><div>${preview}</div>
+                        <span class="price-tag">${p.status}</span>
+                        ${p.specialist_response ? `<div class="alert alert-info" style="margin-top:0.5rem"><strong>رد المختص:</strong><br>${escapeHtml(p.specialist_response)}</div>` : ''}</div>`;
+                    });
+                }
+                container.innerHTML = html;
+            } catch (e) { container.innerHTML = `<div class="card">خطأ: ${e.message}</div>`; }
+        }
+
+        // ============ Specialist Dashboard ============
+        function showSpecialistDashboard() {
+            document.getElementById('homePage').style.display = 'none';
+            document.getElementById('patientPage').style.display = 'none';
+            document.getElementById('specialistDashboard').style.display = 'block';
+            document.getElementById('authButtons').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('welcomeMessage').innerHTML = `<i class="fas fa-user-md"></i> مرحباً ${currentSpecialist.name}`;
+            document.getElementById('specName').textContent = currentSpecialist.name;
+            document.getElementById('specType').textContent = currentSpecialist.title || 'مختص';
+            const menu = document.getElementById('specialistMenu');
+            menu.innerHTML = `
+                <li data-tab="dashboard" class="active"><i class="fas fa-chart-line"></i> لوحة التحكم</li>
+                <li data-tab="results"><i class="fas fa-clipboard-check"></i> نتائج الاختبارات</li>
+                <li data-tab="patients"><i class="fas fa-users"></i> المرضى</li>`;
+            menu.querySelectorAll('li').forEach(item => {
+                item.onclick = () => {
+                    menu.querySelectorAll('li').forEach(l => l.classList.remove('active'));
+                    item.classList.add('active');
+                    loadSpecialistTab(item.dataset.tab);
+                };
+            });
+            loadSpecialistTab('dashboard');
+        }
+
+        async function loadSpecialistTab(tab) {
+            const container = document.getElementById('dashboardContent');
+            if (tab === 'dashboard') await renderSpecDashboard(container);
+            else if (tab === 'results') await renderSpecResults(container);
+            else if (tab === 'patients') await renderSpecPatients(container);
+        }
+
+        async function renderSpecDashboard(container) {
+            try {
+                const patients = await api('/patients');
+                const results = await api('/test-results/all');
+                container.innerHTML = `<h2>لوحة التحكم</h2>
+                <div class="stats-grid">
+                    <div class="stat-card"><div class="stat-number">${patients.length}</div><div class="stat-label">المرضى</div></div>
+                    <div class="stat-card"><div class="stat-number">${results.length}</div><div class="stat-label">نتائج الاختبارات</div></div>
+                </div>
+                <div class="alert alert-info">مرحباً ${currentSpecialist.name}!</div>`;
+            } catch (e) { container.innerHTML = `<div class="card">خطأ: ${e.message}</div>`; }
+        }
+
+        async function renderSpecResults(container) {
+            try {
+                const results = await api('/test-results/all');
+                let html = `<h2><i class="fas fa-clipboard-check"></i> نتائج اختبارات المرضى</h2>`;
+                if (results.length === 0) html += `<div class="card">📭 لا توجد نتائج</div>`;
+                results.forEach(r => {
+                    html += `<div class="card">
+                        <strong>${r.patient_name}</strong> - ${r.test_name}
+                        <div>النتيجة: ${r.total_score} / ${r.max_score} <span class="price-tag">${r.level}</span></div>
+                    </div>`;
+                });
+                container.innerHTML = html;
+            } catch (e) { container.innerHTML = `<div class="card">خطأ: ${e.message}</div>`; }
+        }
+
+        async function renderSpecPatients(container) {
+            try {
+                const patients = await api('/patients');
+                let html = `<h2><i class="fas fa-users"></i> المرضى (${patients.length})</h2>`;
+                if (patients.length === 0) html += `<div class="card">📭 لا يوجد مرضى</div>`;
+                patients.forEach(p => {
+                    html += `<div class="card"><strong>${p.name}</strong><br>📧 ${p.email}<br>📱 ${p.phone}<br>🎂 ${p.age} سنة</div>`;
+                });
+                container.innerHTML = html;
+            } catch (e) { container.innerHTML = `<div class="card">خطأ: ${e.message}</div>`; }
+        }
+
+        // ============ Startup ============
+        loadStoredData();
+    </script>
+</body>
+</html>

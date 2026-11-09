@@ -1,0 +1,2413 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>شركة الأمل - المنصة المتكاملة للصحة النفسية</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Tajawal',sans-serif;background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);color:#14532d;min-height:100vh}
+.container{max-width:1400px;margin:0 auto;padding:0 24px}
+header{background:rgba(255,255,255,.95);backdrop-filter:blur(10px);box-shadow:0 2px 20px rgba(0,0,0,.05);position:sticky;top:0;z-index:1000}
+.nav-container{display:flex;justify-content:space-between;align-items:center;padding:1rem 0;flex-wrap:wrap;gap:1rem}
+.logo{display:flex;align-items:center;gap:10px;font-size:1.8rem;font-weight:800;cursor:pointer}
+.brain-logo{font-size:2rem;animation:pulse 2s infinite;color:#22c55e}
+@keyframes pulse{0%{transform:scale(1);opacity:.7}50%{transform:scale(1.1);opacity:1}100%{transform:scale(1);opacity:.7}}
+.logo-text{background:linear-gradient(135deg,#16a34a,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2rem;flex-wrap:wrap;align-items:center}
+.nav-link{text-decoration:none;color:#166534;font-weight:500;cursor:pointer;transition:.3s}
+.nav-link:hover{color:#16a34a;transform:translateY(-2px)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:.75rem 1.5rem;border-radius:12px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:all .3s ease;font-family:inherit}
+.btn-primary{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(22,163,74,.3)}
+.btn-outline{background:transparent;border:2px solid #16a34a;color:#16a34a}
+.btn-outline:hover{background:#dcfce7;transform:translateY(-2px)}
+.btn-success{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff}
+.btn-danger{background:linear-gradient(135deg,#dc2626,#ef4444);color:#fff}
+.btn-warning{background:linear-gradient(135deg,#eab308,#facc15);color:#fff}
+.btn-sm{padding:.4rem 1rem;font-size:.85rem}
+.auth-buttons{display:flex;gap:1rem;flex-wrap:wrap}
+.user-info{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.welcome-message{background:linear-gradient(135deg,#dcfce7,#bbf7d0);padding:.5rem 1.2rem;border-radius:40px;color:#15803d;font-weight:600;font-size:.9rem}
+.wallet-badge{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;padding:6px 16px;border-radius:40px;font-weight:700;display:inline-flex;align-items:center;gap:6px;font-size:.9rem;cursor:pointer;transition:.3s}
+.wallet-badge:hover{transform:translateY(-2px);box-shadow:0 6px 15px rgba(22,163,74,.3)}
+.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:2000;justify-content:center;align-items:center}
+.modal.active{display:flex}
+.modal-content{background:#fff;border-radius:24px;padding:2rem;max-width:750px;width:90%;max-height:88vh;overflow-y:auto;position:relative;box-shadow:0 25px 50px rgba(0,0,0,.25);animation:modalFadeIn .3s ease}
+@keyframes modalFadeIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.modal-close{position:absolute;top:1rem;left:1rem;font-size:1.5rem;cursor:pointer;color:#94a3b8;transition:.3s}
+.modal-close:hover{color:#dc2626}
+.modal-title{font-size:1.8rem;font-weight:700;margin-bottom:1rem;color:#14532d}
+.form-group{margin-bottom:1.2rem}
+.form-group label{display:block;font-weight:600;margin-bottom:.5rem;color:#166534}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:.8rem 1rem;border:2px solid #bbf7d0;border-radius:12px;font-family:inherit;font-size:1rem;transition:.3s}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:#16a34a;box-shadow:0 0 0 3px rgba(22,163,74,.1)}
+.alert{padding:1rem;border-radius:12px;margin-bottom:1rem;display:none}
+.alert-error{background:#fee2e2;color:#991b1b;border:1px solid #fecaca}
+.alert-success{background:#dcfce7;color:#166534;border:1px solid #bbf7d0}
+.alert-warning{background:#fef3c7;color:#92400e;border:1px solid #fde047}
+.alert-info{background:#dcfce7;color:#15803d;border:1px solid #bbf7d0}
+.form-link{color:#16a34a;cursor:pointer;font-weight:500}
+.hero{background:linear-gradient(135deg,#f0fdf4 0%,#dcfce7 100%);padding:5rem 0;text-align:center;border-radius:0 0 40px 40px;animation:fadeInUp .8s ease}
+@keyframes fadeInUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-title{font-size:3.5rem;font-weight:800;margin-bottom:1rem}
+.highlight{background:linear-gradient(135deg,#16a34a,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.about-section{background:#fff;border-radius:28px;padding:2.5rem;margin:2rem 0;box-shadow:0 10px 25px rgba(0,0,0,.05)}
+.choices-section{padding:3rem 0}
+.section-title{text-align:center;font-size:2.5rem;margin-bottom:2rem;color:#14532d}
+.choices-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem}
+.choice-card{background:#fff;border-radius:24px;padding:2rem;text-align:center;cursor:pointer;transition:all .3s ease;box-shadow:0 10px 25px rgba(0,0,0,.05);border:1px solid rgba(22,163,74,.1)}
+.choice-card:hover{transform:translateY(-8px);box-shadow:0 20px 35px rgba(22,163,74,.15);border-color:#16a34a}
+.choice-icon{width:80px;height:80px;background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:2rem;color:#16a34a}
+.features-section{background:#f0fdf4;padding:4rem 0;margin:2rem 0;border-radius:40px}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:2rem;margin-top:2rem}
+.feature-card{text-align:center;padding:1.5rem;background:#fff;border-radius:20px;transition:all .3s ease}
+.feature-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.1)}
+.feature-icon{width:70px;height:70px;background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.8rem;color:#16a34a}
+.patient-page{padding:2rem 0}
+.page-title{font-size:2.5rem;font-weight:800;text-align:center;margin-bottom:.5rem;color:#14532d}
+.page-subtitle{text-align:center;margin-bottom:2rem;color:#166534}
+.price-tag{display:inline-block;background:linear-gradient(135deg,#dcfce7,#bbf7d0);color:#15803d;padding:5px 15px;border-radius:40px;font-weight:700}
+.problem-container{display:flex;gap:2rem;flex-wrap:wrap}
+.problem-form-card{flex:2;background:#fff;border-radius:28px;padding:2rem;box-shadow:0 10px 25px rgba(0,0,0,.05)}
+.input-methods{display:flex;gap:1rem;margin-bottom:2rem;border-bottom:2px solid #bbf7d0;flex-wrap:wrap}
+.method-tab{padding:.8rem 1.5rem;background:none;border:none;font-weight:600;color:#166534;cursor:pointer;transition:.3s}
+.method-tab.active{color:#16a34a;border-bottom:3px solid #16a34a}
+.input-container{display:none}
+.input-container.active{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.problem-textarea{width:100%;min-height:180px;padding:1rem;border:2px solid #bbf7d0;border-radius:16px;font-family:inherit;resize:vertical;font-size:1rem;line-height:1.5}
+.problem-textarea:focus{outline:none;border-color:#16a34a}
+.record-btn{width:100px;height:100px;border-radius:50%;background:#dcfce7;border:none;font-size:2.5rem;color:#16a34a;cursor:pointer;margin:0 auto 1rem;display:flex;align-items:center;justify-content:center;transition:.3s}
+.record-btn.recording{animation:pulse 1.5s infinite;background:#dc2626;color:#fff}
+.voice-controls{display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin:1rem 0}
+.upload-area{border:2px dashed #bbf7d0;border-radius:20px;padding:2rem;text-align:center;cursor:pointer;transition:.3s}
+.upload-area:hover{border-color:#16a34a;background:#f0fdf4}
+.patient-dashboard{background:#fff;border-radius:28px;padding:1.8rem;margin-top:2rem;box-shadow:0 10px 25px rgba(0,0,0,.05)}
+.patient-tabs{display:flex;gap:.5rem;border-bottom:2px solid #bbf7d0;margin-bottom:1.5rem;flex-wrap:wrap}
+.patient-tab{padding:.75rem 1.2rem;background:none;border:none;font-weight:600;color:#166534;cursor:pointer;transition:.3s;border-radius:12px 12px 0 0;font-size:.9rem}
+.patient-tab.active{color:#16a34a;border-bottom:3px solid #16a34a;background:#dcfce7}
+.dashboard-container{display:grid;grid-template-columns:280px 1fr;gap:24px;padding:2rem 0}
+.sidebar{background:#fff;border-radius:28px;padding:1.5rem;box-shadow:0 10px 25px rgba(0,0,0,.05);height:fit-content;position:sticky;top:90px}
+.specialist-avatar{text-align:center;margin-bottom:1.5rem;padding-bottom:1rem;border-bottom:2px solid #bbf7d0}
+.sidebar-menu{list-style:none}
+.sidebar-menu li{padding:.85rem 1rem;margin:.3rem 0;border-radius:16px;display:flex;align-items:center;gap:12px;cursor:pointer;font-weight:500;color:#166534;transition:.3s;font-size:.92rem}
+.sidebar-menu li:hover,.sidebar-menu li.active{background:#dcfce7;color:#16a34a;transform:translateX(-5px)}
+.dashboard-main{background:#fff;border-radius:28px;padding:1.8rem;box-shadow:0 10px 25px rgba(0,0,0,.05);min-height:400px}
+.card{background:#f0fdf4;border-radius:20px;padding:1.2rem;margin-bottom:1rem;border:1px solid #bbf7d0;transition:.3s;cursor:pointer}
+.card:hover{box-shadow:0 4px 12px rgba(0,0,0,.05);transform:translateY(-2px)}
+.test-card{border-right:4px solid #16a34a}
+.chat-container{height:450px;display:flex;flex-direction:column;border:1px solid #bbf7d0;border-radius:20px;overflow:hidden;background:#fff}
+.chat-messages{flex:1;overflow-y:auto;padding:1rem;background:#f0fdf4}
+.message{margin-bottom:1rem;display:flex;flex-direction:column}
+.message.sent{align-items:flex-end}
+.message.received{align-items:flex-start}
+.message-bubble{max-width:70%;padding:.75rem 1.2rem;border-radius:20px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.05);word-wrap:break-word}
+.message.sent .message-bubble{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff}
+.message.received .message-bubble{background:#fff;color:#14532d;border:1px solid #bbf7d0}
+.message-time{font-size:.7rem;color:#94a3b8;margin-top:.25rem}
+.chat-input-area{display:flex;padding:1rem;gap:.8rem;background:#fff;border-top:1px solid #bbf7d0}
+.chat-input{flex:1;padding:.8rem 1.2rem;border:1px solid #bbf7d0;border-radius:40px;font-family:inherit;font-size:.95rem}
+.chat-input:focus{outline:none;border-color:#16a34a}
+.chat-list-card{display:flex;align-items:center;gap:1rem;padding:1rem;cursor:pointer;transition:.3s}
+.chat-list-card:hover{background:#dcfce7;transform:translateX(-5px)}
+.chat-avatar{width:50px;height:50px;background:linear-gradient(135deg,#16a34a,#22c55e);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;flex-shrink:0}
+.video-room{background:linear-gradient(135deg,#052e16,#064e3b);border-radius:28px;padding:1.5rem}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem}
+.video-card{background:#166534;border-radius:20px;overflow:hidden;position:relative;aspect-ratio:4/3}
+.video-card video{width:100%;height:100%;object-fit:cover;background:#000}
+.video-label{position:absolute;bottom:10px;right:10px;background:rgba(0,0,0,.6);color:#fff;padding:4px 12px;border-radius:20px;font-size:.75rem}
+.meeting-controls{display:flex;justify-content:center;gap:1rem;margin-top:1rem;flex-wrap:wrap}
+.status-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.75rem;font-weight:600}
+.status-paid{background:#dcfce7;color:#166534}
+.score-normal{background:#dcfce7;color:#166534}
+.score-mild{background:#fef3c7;color:#92400e}
+.score-moderate{background:#fed7aa;color:#9a3412}
+.score-severe{background:#fee2e2;color:#991b1b}
+.test-question{background:#f0fdf4;padding:1rem;border-radius:12px;margin-bottom:1rem;border:1px solid #bbf7d0}
+.test-question p{margin-bottom:.75rem;font-weight:600}
+.test-question label{display:inline-flex;align-items:center;gap:.5rem;margin-left:1.2rem;cursor:pointer;font-size:.9rem}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-bottom:1.5rem}
+.stat-card{background:linear-gradient(135deg,#dcfce7,#bbf7d0);border-radius:20px;padding:1.5rem;text-align:center}
+.stat-number{font-size:1.8rem;font-weight:800;color:#16a34a}
+.stat-label{color:#166534;margin-top:.5rem;font-size:.9rem}
+.rating-stars{color:#fbbf24;font-size:1.5rem;cursor:pointer;display:inline-block}
+.rating-star{transition:.2s;margin:0 2px}
+.rating-star:hover{transform:scale(1.2)}
+.projective-image{max-width:100%;max-height:400px;object-fit:contain;background:#f0fdf4;border-radius:16px;margin-bottom:1rem;border:1px solid #bbf7d0;cursor:pointer;transition:transform .2s}
+.projective-image:hover{transform:scale(1.02)}
+.drawing-canvas{border:2px solid #bbf7d0;border-radius:16px;margin-bottom:1rem;background:#fff;cursor:crosshair;width:100%;height:auto}
+.drawing-controls{display:flex;gap:.8rem;justify-content:center;margin:1rem 0;flex-wrap:wrap}
+.question-item{background:#f0fdf4;padding:1rem;border-radius:12px;margin-bottom:1rem;border-right:3px solid #16a34a}
+.notification-toast{position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:10000;min-width:300px;text-align:center;direction:rtl;box-shadow:0 4px 15px rgba(0,0,0,.2);animation:slideDown .3s ease}
+@keyframes slideDown{from{opacity:0;transform:translateX(-50%) translateY(-50px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+footer{background:#052e16;color:#86efac;padding:2rem 0;margin-top:3rem;text-align:center}
+.plans-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.2rem;margin:1.5rem 0}
+.plan-card{background:#fff;border:2px solid #bbf7d0;border-radius:24px;padding:1.5rem;text-align:center;transition:.3s;position:relative}
+.plan-card:hover{transform:translateY(-6px);box-shadow:0 18px 35px rgba(22,163,74,.18);border-color:#16a34a}
+.plan-card.featured{border-color:#16a34a;background:linear-gradient(180deg,#f0fdf4,#fff)}
+.plan-card.featured::before{content:'الأكثر شيوعاً';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;padding:4px 16px;border-radius:20px;font-size:.72rem;font-weight:700}
+.plan-price{font-size:2rem;font-weight:800;color:#16a34a;margin:.5rem 0}
+.plan-price small{font-size:.9rem;color:#166534;font-weight:500}
+.plan-features{list-style:none;margin:1rem 0;text-align:right}
+.plan-features li{padding:.4rem 0;color:#166534;border-bottom:1px dashed #dcfce7;font-size:.88rem}
+.plan-features li i{color:#16a34a;margin-left:8px}
+.payment-methods{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:1rem;margin:1rem 0}
+.pay-method{border:2px solid #bbf7d0;border-radius:16px;padding:1rem;text-align:center;cursor:pointer;transition:.3s;background:#fff}
+.pay-method:hover{border-color:#16a34a;background:#f0fdf4}
+.pay-method.selected{border-color:#16a34a;background:#dcfce7;box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+.pay-method i{font-size:1.8rem;color:#16a34a;display:block;margin-bottom:.4rem}
+.tx-table{width:100%;border-collapse:collapse;font-size:.85rem}
+.tx-table th{background:#dcfce7;color:#14532d;padding:.6rem;text-align:right}
+.tx-table td{padding:.6rem;border-bottom:1px solid #dcfce7;color:#166534}
+.tx-table tr:hover{background:#f0fdf4}
+.tx-status{padding:3px 10px;border-radius:20px;font-size:.72rem;font-weight:700;display:inline-block}
+.tx-paid{background:#dcfce7;color:#166534}
+.tx-pending{background:#fef3c7;color:#92400e}
+.tx-failed{background:#fee2e2;color:#991b1b}
+.card-preview{background:linear-gradient(135deg,#052e16,#16a34a);border-radius:20px;padding:1.2rem;color:#fff;max-width:320px;margin:.5rem auto;box-shadow:0 15px 30px rgba(5,46,22,.35)}
+.card-preview .chip{width:40px;height:28px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:6px;margin-bottom:.8rem}
+.card-preview .number{font-size:1.1rem;letter-spacing:2px;margin:.6rem 0;font-family:monospace}
+.card-preview .row{display:flex;justify-content:space-between;font-size:.75rem;opacity:.9}
+.pay-step{display:none}
+.pay-step.active{display:block;animation:fadeIn .3s ease}
+.invoice-box{background:#f0fdf4;border:2px dashed #16a34a;border-radius:20px;padding:1.2rem;margin-top:1rem}
+.invoice-row{display:flex;justify-content:space-between;padding:.45rem 0;border-bottom:1px dashed #bbf7d0;font-size:.9rem}
+.invoice-total{font-size:1.15rem;font-weight:800;color:#14532d;border-bottom:none}
+.session-type-card{background:#fff;border:2px solid #bbf7d0;border-radius:20px;padding:1.2rem;text-align:center;cursor:pointer;transition:.3s}
+.session-type-card:hover{border-color:#16a34a;transform:translateY(-4px);box-shadow:0 12px 25px rgba(22,163,74,.15)}
+.session-type-card.selected{border-color:#16a34a;background:#dcfce7;box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+.session-type-card i{font-size:2rem;color:#16a34a;margin-bottom:.4rem}
+.session-type-price{font-size:1.4rem;font-weight:800;color:#16a34a;margin:.4rem 0}
+.specialist-pick-card{display:flex;align-items:center;gap:1rem;padding:1rem;border:2px solid #bbf7d0;border-radius:16px;cursor:pointer;transition:.3s;margin-bottom:.8rem;background:#fff}
+.specialist-pick-card:hover{border-color:#16a34a;background:#f0fdf4}
+.specialist-pick-card.selected{border-color:#16a34a;background:#dcfce7;box-shadow:0 0 0 3px rgba(22,163,74,.15)}
+.time-slot{padding:.6rem 1rem;border:2px solid #bbf7d0;border-radius:12px;cursor:pointer;transition:.2s;background:#fff;text-align:center;font-size:.9rem}
+.time-slot:hover{border-color:#16a34a;background:#f0fdf4}
+.time-slot.selected{border-color:#16a34a;background:#16a34a;color:#fff;font-weight:700}
+.time-slot.booked{background:#f1f5f9;color:#94a3b8;cursor:not-allowed;text-decoration:line-through;border-color:#e2e8f0}
+.time-slots-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:.6rem}
+.booking-summary{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border:2px solid #16a34a;border-radius:20px;padding:1.2rem}
+.booking-summary .row{display:flex;justify-content:space-between;padding:.4rem 0;color:#166534;font-size:.9rem}
+.booking-summary .total{border-top:2px dashed #16a34a;margin-top:.5rem;padding-top:.8rem;font-size:1.15rem;font-weight:800;color:#14532d}
+.booking-steps{display:flex;justify-content:center;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.booking-step-dot{display:flex;align-items:center;gap:.4rem;padding:.4rem .9rem;border-radius:40px;background:#f0fdf4;color:#94a3b8;font-weight:600;font-size:.8rem}
+.booking-step-dot.active{background:#16a34a;color:#fff}
+.booking-step-dot.done{background:#dcfce7;color:#166534}
+.game-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+.game-card{background:#fff;border-radius:16px;padding:1.5rem;text-align:center;border:1px solid #bbf7d0;transition:.3s;cursor:pointer;position:relative}
+.game-card:hover{transform:translateY(-5px);box-shadow:0 10px 25px rgba(0,0,0,.1)}
+.game-card i{font-size:3rem;color:#16a34a;margin-bottom:.5rem}
+.memory-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:400px;margin:0 auto}
+.memory-card{aspect-ratio:1;background:#16a34a;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:.3s;color:#fff}
+.memory-card.flipped{background:#dcfce7;color:#16a34a}
+.memory-card.matched{background:#bbf7d0;color:#16a34a;cursor:default;opacity:.7}
+.puzzle-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;max-width:300px;margin:0 auto}
+.puzzle-tile{aspect-ratio:1;background:#16a34a;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:700;color:#fff;cursor:pointer;transition:.3s}
+.puzzle-tile.empty{background:#dcfce7;color:transparent;cursor:default}
+.puzzle-tile:hover:not(.empty){transform:scale(1.05)}
+.specialists-meeting{background:linear-gradient(135deg,#052e16,#064e3b);color:#fff}
+.specialist-card{background:rgba(255,255,255,.1);border-radius:20px;padding:1rem;margin-bottom:1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.online-dot{width:12px;height:12px;background:#22c55e;border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 1.5s infinite}
+@media(max-width:900px){.dashboard-container{grid-template-columns:1fr}.sidebar{position:static}.problem-container{flex-direction:column}.hero-title{font-size:2.2rem}.message-bubble{max-width:85%}}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<div class="nav-container">
+<div class="logo" onclick="showHomePage()"><span class="brain-logo"><i class="fas fa-brain"></i></span><span class="logo-text">شركة الأمل</span></div>
+<div class="nav-links">
+<a class="nav-link" onclick="showHomePage()">الرئيسية</a>
+<a class="nav-link" onclick="scrollToServices()">الخدمات</a>
+<a class="nav-link" onclick="scrollToAbout()">عن المنصة</a>
+<a class="nav-link" onclick="openContactModal()">اتصل بنا</a>
+</div>
+<div class="auth-buttons" id="authButtons">
+<button class="btn btn-outline" onclick="openLoginModal()"><i class="fas fa-sign-in-alt"></i> تسجيل الدخول</button>
+<button class="btn btn-primary" onclick="openRegisterModal()"><i class="fas fa-user-plus"></i> انضم كـ مريض</button>
+<button class="btn btn-outline" onclick="openSpecialistLogin()"><i class="fas fa-user-md"></i> دخول المختصين</button>
+</div>
+<div class="user-info" id="userInfo" style="display:none;">
+<span class="wallet-badge" id="walletBadge" onclick="openWalletModal()"><i class="fas fa-wallet"></i> <span id="walletBalance">0</span> دج</span>
+<span class="welcome-message" id="welcomeMessage"></span>
+<button class="btn btn-outline btn-sm" onclick="logout()"><i class="fas fa-sign-out-alt"></i> خروج</button>
+</div>
+</div>
+</div>
+</header>
+
+<div id="homePage">
+<section class="hero">
+<div class="container">
+<h1 class="hero-title">منصة <span class="highlight">الأمل</span> للصحة النفسية</h1>
+<p style="font-size:1.2rem;margin-bottom:2rem;color:#166534;">دعم نفسي متكامل بسرية تامة</p>
+<button class="btn btn-primary" onclick="openRegisterModal()"><i class="fas fa-play-circle"></i> ابدأ الآن مجاناً</button>
+<button class="btn btn-outline" onclick="openPlansModal()" style="margin-right:.5rem;"><i class="fas fa-crown"></i> عرض الباقات</button>
+</div>
+</section>
+<div class="container">
+<div class="about-section" id="aboutSection">
+<div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;">
+<div style="flex:1;"><i class="fas fa-brain" style="font-size:4rem;color:#16a34a;margin-bottom:1rem;"></i>
+<h2 style="color:#14532d;margin-bottom:1rem;">عن <span class="highlight">شركة الأمل</span></h2>
+<p style="color:#166534;line-height:1.8;">منصة رائدة في مجال الصحة النفسية، نقدم خدمات استشارية متخصصة بأعلى معايير الجودة والسرية.</p></div>
+<div style="flex:1;text-align:center;"><i class="fas fa-hand-holding-heart" style="font-size:8rem;color:#bbf7d0;"></i></div>
+</div>
+</div>
+</div>
+<div class="container">
+<div class="choices-section" id="servicesSection">
+<h2 class="section-title">اختر الفئة <span>المناسبة لك</span></h2>
+<div class="choices-grid">
+<div class="choice-card" onclick="openRegisterModal()"><div class="choice-icon"><i class="fas fa-user-injured"></i></div><h3>مريض / مستفيد</h3><p style="color:#166534">احصل على استشارة نفسية</p></div>
+<div class="choice-card" onclick="openSpecialistLogin()"><div class="choice-icon"><i class="fas fa-user-md"></i></div><h3>أخصائي نفسي</h3><p style="color:#166534">دعم نفسي متخصص</p></div>
+<div class="choice-card" onclick="openSpecialistLogin()"><div class="choice-icon"><i class="fas fa-hands-helping"></i></div><h3>أخصائي اجتماعي</h3><p style="color:#166534">دعم اجتماعي متخصص</p></div>
+<div class="choice-card" onclick="openSpecialistLogin()"><div class="choice-icon"><i class="fas fa-briefcase"></i></div><h3>مختص العمل</h3><p style="color:#166534">استشارات مهنية</p></div>
+</div>
+</div>
+</div>
+<div class="features-section">
+<div class="container">
+<h2 class="section-title">ما <span>نقدمه</span></h2>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon"><i class="fas fa-clipboard-list"></i></div><h3>اختبارات نفسية</h3><p>أكثر من 15 اختباراً معتمداً</p></div>
+<div class="feature-card"><div class="feature-icon"><i class="fas fa-video"></i></div><h3>جلسات أونلاين</h3><p>جلسات عبر Google Meet</p></div>
+<div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>تقييم دقيق</h3><p>نتائج فورية وتحليل احترافي</p></div>
+<div class="feature-card"><div class="feature-icon"><i class="fas fa-lock"></i></div><h3>سرية تامة</h3><p>معلوماتك آمنة ومحمية</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="modal" id="contactModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeContactModal()">&times;</span>
+<h2 class="modal-title"><i class="fas fa-headset"></i> اتصل بنا</h2>
+<div style="display:grid;gap:0.8rem;">
+<div><i class="fas fa-phone-alt" style="color:#16a34a;width:30px;"></i><strong>الهاتف:</strong> 0668623816</div>
+<div><i class="fas fa-envelope" style="color:#16a34a;width:30px;"></i><strong>البريد:</strong> contact@almal.dz</div>
+<div><i class="fab fa-whatsapp" style="color:#16a34a;width:30px;"></i><strong>واتساب:</strong> 0668623816</div>
+<div class="alert alert-info" style="display:block;margin-top:1rem;text-align:center;"><i class="fas fa-clock"></i> السبت - الخميس 24 ساعة</div>
+</div>
+</div>
+</div>
+
+<div id="patientPage" style="display:none;">
+<div class="container">
+<div class="patient-page">
+<h1 class="page-title">اطرح مشكلتك النفسية</h1>
+<p class="page-subtitle">احصل على إجابة متخصصة <span class="price-tag">مجاناً</span></p>
+<div style="text-align:center;margin-bottom:1.5rem;">
+<button class="btn btn-primary" onclick="openBookingModal()" style="padding:1rem 2rem;font-size:1.05rem;"><i class="fas fa-calendar-plus"></i> احجز جلسة مع مختص</button>
+<button class="btn btn-outline" onclick="openPlansModal()" style="padding:1rem 1.5rem;font-size:1rem;margin-right:.5rem;"><i class="fas fa-crown"></i> باقات الاشتراك</button>
+</div>
+<div class="problem-container">
+<div class="problem-form-card">
+<h2 style="margin-bottom:1rem;"><i class="fas fa-comment-medical"></i> اشرح مشكلتك</h2>
+<div class="input-methods">
+<button class="method-tab active" data-method="text"><i class="fas fa-edit"></i> كتابياً</button>
+<button class="method-tab" data-method="voice"><i class="fas fa-microphone"></i> صوتياً</button>
+<button class="method-tab" data-method="upload"><i class="fas fa-upload"></i> رفع ملف</button>
+</div>
+<div class="input-container text-input active" id="text-input">
+<textarea class="problem-textarea" id="problem-text" placeholder="✍️ اشرح مشكلتك النفسية بالتفصيل..." maxlength="2000"></textarea>
+<div style="display:flex;justify-content:space-between;margin-top:0.5rem;"><span><span id="char-count">0</span> / 2000</span></div>
+<button class="btn btn-success" id="save-text-btn" disabled><i class="fas fa-save"></i> حفظ النص</button>
+<div id="textSavedMessage" class="alert alert-success">✓ تم الحفظ</div>
+</div>
+<div class="input-container voice-input" id="voice-input">
+<div style="text-align:center">
+<button class="record-btn" id="record-btn"><i class="fas fa-microphone"></i></button>
+<div id="timer" style="font-size:1.4rem;margin:0.5rem 0;">00:00</div>
+<div class="voice-controls">
+<button class="btn btn-outline btn-sm" id="play-voice-btn" disabled><i class="fas fa-play"></i> استماع</button>
+<button class="btn btn-danger btn-sm" id="delete-voice-btn" disabled><i class="fas fa-trash"></i> حذف</button>
+<button class="btn btn-success btn-sm" id="save-voice-btn" disabled><i class="fas fa-save"></i> حفظ</button>
+</div>
+<audio id="voice-preview" controls style="display:none;width:100%"></audio>
+<div id="voiceSavedMessage" class="alert alert-success">✓ تم حفظ التسجيل</div>
+</div>
+</div>
+<div class="input-container upload-input" id="upload-input">
+<div class="upload-area" onclick="document.getElementById('file-upload').click()">
+<i class="fas fa-cloud-upload-alt fa-3x" style="color:#16a34a"></i><p>اضغط لرفع ملف</p>
+</div>
+<input type="file" id="file-upload" style="display:none;">
+<div id="file-info"></div>
+<button class="btn btn-success" id="save-upload-btn" disabled><i class="fas fa-save"></i> حفظ الملف</button>
+<div id="fileSavedMessage" class="alert alert-success">✓ تم حفظ الملف</div>
+</div>
+</div>
+</div>
+<div style="margin-top:1.5rem;text-align:center;">
+<button class="btn btn-primary" onclick="submitProblem()" style="width:100%;padding:1rem;"><i class="fas fa-paper-plane"></i> إرسال الاستشارة (مجاناً)</button>
+</div>
+<div class="patient-dashboard">
+<div class="patient-tabs">
+<button class="patient-tab active" onclick="showPatientTab('chats')"><i class="fas fa-comments"></i> المحادثات</button>
+<button class="patient-tab" onclick="showPatientTab('bookings')"><i class="fas fa-calendar-check"></i> جلساتي المحجوزة</button>
+<button class="patient-tab" onclick="showPatientTab('problems')"><i class="fas fa-file-invoice"></i> استشاراتي</button>
+<button class="patient-tab" onclick="showPatientTab('ratings')"><i class="fas fa-star"></i> تقييماتي</button>
+</div>
+<div id="patientChatsPanel" class="patient-panel"></div>
+<div id="patientBookingsPanel" class="patient-panel" style="display:none;"></div>
+<div id="patientProblemsPanel" class="patient-panel" style="display:none;"></div>
+<div id="patientRatingsPanel" class="patient-panel" style="display:none;"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="modal" id="loginModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeLoginModal()">&times;</span>
+<h2 class="modal-title">تسجيل الدخول</h2>
+<div id="loginError" class="alert alert-error"></div>
+<form onsubmit="handleLogin(event)">
+<div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="loginEmail" required></div>
+<div class="form-group"><label>كلمة المرور</label><input type="password" id="loginPassword" required></div>
+<button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-sign-in-alt"></i> دخول</button>
+</form>
+<div style="margin-top:1rem;text-align:center"><a class="form-link" onclick="closeLoginModal();openRegisterModal()">ليس لديك حساب؟ سجل الآن</a></div>
+</div>
+</div>
+
+<div class="modal" id="registerModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeRegisterModal()">&times;</span>
+<h2 class="modal-title">إنشاء حساب مريض</h2>
+<div id="regError" class="alert alert-error"></div>
+<div id="regSuccess" class="alert alert-success"></div>
+<form onsubmit="handleRegister(event)">
+<div class="form-group"><label>الاسم الكامل</label><input type="text" id="regName" required></div>
+<div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="regEmail" required></div>
+<div class="form-group"><label>رقم الهاتف</label><input type="tel" id="regPhone" pattern="[0-9]+" required></div>
+<div class="form-group"><label>العمر</label><input type="number" id="regAge" min="1" max="120" required></div>
+<div class="form-group"><label>الجنس</label><select id="regGender" required><option value="">اختر</option><option value="ذكر">ذكر</option><option value="أنثى">أنثى</option></select></div>
+<div class="form-group"><label>كلمة المرور</label><input type="password" id="regPassword" required></div>
+<button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-user-plus"></i> إنشاء حساب</button>
+</form>
+</div>
+</div>
+
+<div class="modal" id="specialistLoginModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeSpecialistLogin()">&times;</span>
+<h2 class="modal-title">دخول المختصين</h2>
+<div id="specLoginError" class="alert alert-error"></div>
+<form onsubmit="handleSpecialistLogin(event)">
+<div class="form-group"><label>البريد الإلكتروني</label><input type="email" id="specEmail" required></div>
+<div class="form-group"><label>كلمة المرور</label><input type="password" id="specPassword" required></div>
+<button type="submit" class="btn btn-primary" style="width:100%"><i class="fas fa-user-md"></i> دخول</button>
+</form>
+<div style="margin-top:1.2rem;padding-top:1rem;border-top:1px solid #bbf7d0;font-size:0.85rem;">
+<p style="color:#166534;"><strong>حسابات تجريبية:</strong></p>
+<p>🧠 chaimaasaidane45@gmail.com / 12345</p>
+<p>🤝 Krattousouad46@gmail.com / 12345</p>
+<p>💼 bouchra.mokri05@gmail.com / 12345</p>
+</div>
+</div>
+</div>
+
+<div id="specialistDashboard" style="display:none;">
+<div class="container">
+<div class="dashboard-container">
+<div class="sidebar">
+<div class="specialist-avatar">
+<i class="fas fa-user-circle fa-4x" style="color:#16a34a"></i>
+<h3 id="specName"></h3>
+<p id="specType" style="color:#166534;font-size:0.85rem"></p>
+</div>
+<ul class="sidebar-menu" id="specialistMenu"></ul>
+</div>
+<div class="dashboard-main" id="dashboardContent"></div>
+</div>
+</div>
+</div>
+
+<div class="modal" id="walletModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeWalletModal()">&times;</span>
+<h2 class="modal-title"><i class="fas fa-wallet"></i> محفظتي</h2>
+<div class="stat-card" style="margin-bottom:1rem;"><div class="stat-label">الرصيد الحالي</div><div class="stat-number" id="walletModalBalance">0 دج</div></div>
+<div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-bottom:1rem;">
+<button class="btn btn-primary" onclick="openDepositModal()"><i class="fas fa-plus-circle"></i> شحن</button>
+<button class="btn btn-outline" onclick="showWalletTransactions()"><i class="fas fa-receipt"></i> سجل المعاملات</button>
+</div>
+<div id="walletContent"></div>
+</div>
+</div>
+
+<div class="modal" id="depositModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeDepositModal()">&times;</span>
+<h2 class="modal-title"><i class="fas fa-credit-card"></i> شحن الرصيد</h2>
+<div class="form-group"><label>المبلغ (دج)</label><input type="number" id="depositAmount" min="100" step="100" value="1000"></div>
+<div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;">
+<button class="btn btn-outline btn-sm" onclick="setDepositAmount(500)">500</button>
+<button class="btn btn-outline btn-sm" onclick="setDepositAmount(1000)">1000</button>
+<button class="btn btn-outline btn-sm" onclick="setDepositAmount(2000)">2000</button>
+<button class="btn btn-outline btn-sm" onclick="setDepositAmount(5000)">5000</button>
+</div>
+<h3 style="margin-bottom:.5rem;">طريقة الدفع</h3>
+<div class="payment-methods" id="depositMethods">
+<div class="pay-method selected" data-method="card" onclick="selectPayMethod(this)"><i class="fas fa-credit-card"></i> بطاقة بنكية</div>
+<div class="pay-method" data-method="edahabia" onclick="selectPayMethod(this)"><i class="fas fa-money-check-alt"></i> الذهبية</div>
+<div class="pay-method" data-method="ccp" onclick="selectPayMethod(this)"><i class="fas fa-university"></i> CCP</div>
+</div>
+<button class="btn btn-success" onclick="processDeposit()" style="width:100%;margin-top:1rem;"><i class="fas fa-lock"></i> تأكيد الدفع</button>
+</div>
+</div>
+
+<div class="modal" id="plansModal">
+<div class="modal-content" style="max-width:950px;">
+<span class="modal-close" onclick="closePlansModal()">&times;</span>
+<h2 class="modal-title"><i class="fas fa-crown"></i> باقات الاشتراك</h2>
+<div class="plans-grid" id="plansGrid"></div>
+</div>
+</div>
+
+<div class="modal" id="checkoutModal">
+<div class="modal-content">
+<span class="modal-close" onclick="closeCheckoutModal()">&times;</span>
+<h2 class="modal-title"><i class="fas fa-shopping-cart"></i> إتمام الاشتراك</h2>
+<div id="checkoutSummary" class="invoice-box"></div>
+<div class="form-group" style="margin-top:1rem;">
+<label>طريقة الدفع</label>
+<select id="checkoutMethod" onchange="toggleCardFields()">
+<option value="wallet">المحفظة</option>
+<option value="card">بطاقة بنكية</option>
+<option value="edahabia">الذهبية</option>
+<option value="ccp">CCP</option>
+</select>
+</div>
+<div id="cardFields" style="display:none;">
+<div class="card-preview">
+<div class="chip"></div>
+<div class="number" id="cardPreviewNum">•••• •••• •••• ••••</div>
+<div class="row"><span id="cardPreviewName">اسم حامل البطاقة</span><span id="cardPreviewExp">MM/YY</span></div>
+</div>
+<div class="form-group"><label>رقم البطاقة</label><input type="text" id="cardNumber" maxlength="19" placeholder="0000 0000 0000 0000" oninput="formatCardNumber(this)"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+<div class="form-group"><label>الانتهاء</label><input type="text" id="cardExpiry" maxlength="5" placeholder="MM/YY" oninput="formatExpiry(this)"></div>
+<div class="form-group"><label>CVV</label><input type="password" id="cardCvv" maxlength="3" placeholder="•••"></div>
+</div>
+<div class="form-group"><label>حامل البطاقة</label><input type="text" id="cardName" placeholder="الاسم الكامل"></div>
+</div>
+<button class="btn btn-success" onclick="confirmCheckout()" style="width:100%;margin-top:1rem;"><i class="fas fa-lock"></i> دفع الآن</button>
+</div>
+</div>
+
+<div class="modal" id="bookingModal">
+<div class="modal-content" style="max-width:820px;">
+<span class="modal-close" onclick="closeBookingModal()">&times;</span>
+<h2 class="modal-title"><i class="fas fa-calendar-check"></i> حجز جلسة جديدة</h2>
+<div class="booking-steps" id="bookingSteps">
+<div class="booking-step-dot active" data-step="1"><i class="fas fa-list"></i> النوع</div>
+<div class="booking-step-dot" data-step="2"><i class="fas fa-user-md"></i> المختص</div>
+<div class="booking-step-dot" data-step="3"><i class="fas fa-clock"></i> الموعد</div>
+<div class="booking-step-dot" data-step="4"><i class="fas fa-credit-card"></i> الدفع</div>
+</div>
+<div class="pay-step active" id="bookStep1">
+<h3 style="margin-bottom:1rem;">اختر نوع الجلسة</h3>
+<div class="plans-grid" id="sessionTypesGrid"></div>
+<button class="btn btn-primary" style="width:100%;margin-top:1rem;" onclick="bookingGoToStep(2)">التالي <i class="fas fa-arrow-left"></i></button>
+</div>
+<div class="pay-step" id="bookStep2">
+<h3 style="margin-bottom:1rem;">اختر المختص</h3>
+<div id="specialistsPickList"></div>
+<div style="display:flex;gap:1rem;margin-top:1rem;">
+<button class="btn btn-outline" onclick="bookingGoToStep(1)"><i class="fas fa-arrow-right"></i> السابق</button>
+<button class="btn btn-primary" style="flex:1;" onclick="bookingGoToStep(3)">التالي <i class="fas fa-arrow-left"></i></button>
+</div>
+</div>
+<div class="pay-step" id="bookStep3">
+<h3 style="margin-bottom:1rem;">اختر التاريخ والوقت</h3>
+<div class="form-group"><label>التاريخ</label><input type="date" id="bookingDate" onchange="renderTimeSlots()"></div>
+<label style="font-weight:600;color:#166534;display:block;margin-bottom:.5rem;">الأوقات المتاحة</label>
+<div class="time-slots-grid" id="timeSlotsGrid"><p style="color:#94a3b8;">اختر التاريخ أولاً</p></div>
+<div style="display:flex;gap:1rem;margin-top:1.2rem;">
+<button class="btn btn-outline" onclick="bookingGoToStep(2)"><i class="fas fa-arrow-right"></i> السابق</button>
+<button class="btn btn-primary" style="flex:1;" onclick="bookingGoToStep(4)">التالي <i class="fas fa-arrow-left"></i></button>
+</div>
+</div>
+<div class="pay-step" id="bookStep4">
+<h3 style="margin-bottom:1rem;">الدفع وتأكيد الحجز</h3>
+<div id="bookingSummaryBox"></div>
+<div class="form-group" style="margin-top:1rem;">
+<label>طريقة الدفع</label>
+<select id="bookingPayMethod" onchange="toggleBookingCardFields()">
+<option value="wallet">المحفظة</option>
+<option value="card">بطاقة الذهبية / CIB</option>
+<option value="ccp">تحويل CCP</option>
+</select>
+</div>
+<div id="bookingCardFields" style="display:none;">
+<div class="form-group"><label>رقم البطاقة</label><input type="text" id="bkCardNumber" maxlength="19" placeholder="0000 0000 0000 0000" oninput="formatCardNumber(this)"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+<div class="form-group"><label>الانتهاء</label><input type="text" id="bkCardExpiry" maxlength="5" placeholder="MM/YY" oninput="formatExpiry(this)"></div>
+<div class="form-group"><label>CVV</label><input type="password" id="bkCardCvv" maxlength="3" placeholder="•••"></div>
+</div>
+</div>
+<div id="bookingCcpFields" style="display:none;">
+<div class="alert alert-info" style="display:block;">
+<strong>تحويل CCP:</strong><br>
+رقم الحساب: <strong>0023456789 clé 45</strong><br>
+الاسم: شركة الأمل للصحة النفسية<br>
+بعد التحويل، أدخل رقم الوصل.
+</div>
+<div class="form-group"><label>رقم وصل التحويل</label><input type="text" id="bkCcpReceipt" placeholder="أدخل رقم الوصل"></div>
+</div>
+<div style="display:flex;gap:1rem;margin-top:1.2rem;">
+<button class="btn btn-outline" onclick="bookingGoToStep(3)"><i class="fas fa-arrow-right"></i> السابق</button>
+<button class="btn btn-success" style="flex:1;" id="confirmBookingPayBtn" onclick="confirmBookingAndPay()"><i class="fas fa-lock"></i> تأكيد الدفع والحجز</button>
+</div>
+</div>
+</div>
+</div>
+
+<footer><div class="container"><p>© 2026 شركة الأمل - المنصة المتكاملة للصحة النفسية | جميع الحقوق محفوظة</p></div></footer>
+<script>
+/* البيانات */
+const SPECIALISTS_DATA = {
+  'chaimaasaidane45@gmail.com': { id: 1, name: 'سعيدان شيماء', type: 'psychologist', title: 'أخصائي نفسي', password: '12345', avatar: '🧠', specialization: 'علاج القلق والاكتئاب' },
+  'Krattousouad46@gmail.com': { id: 2, name: 'كراتو سعاد', type: 'social', title: 'أخصائي اجتماعي', password: '12345', avatar: '🤝', specialization: 'الدعم الأسري' },
+  'bouchra.mokri05@gmail.com': { id: 3, name: 'مقري بشرى', type: 'work', title: 'مختصة العمل', password: '12345', avatar: '💼', specialization: 'التوجيه المهني' }
+};
+
+const SESSION_TYPES = [
+  { id: 'text', name: 'جلسة نصية', price: 800, duration: '30 دقيقة', icon: 'fas fa-comment-dots', desc: 'محادثة نصية' },
+  { id: 'voice', name: 'جلسة صوتية', price: 1200, duration: '45 دقيقة', icon: 'fas fa-phone', desc: 'مكالمة صوتية' },
+  { id: 'video', name: 'جلسة فيديو', price: 2000, duration: '60 دقيقة', icon: 'fas fa-video', desc: 'جلسة فيديو كاملة' },
+  { id: 'urgent', name: 'جلسة عاجلة', price: 3000, duration: '60 دقيقة', icon: 'fas fa-bolt', desc: 'استجابة خلال ساعة' }
+];
+
+const SUBSCRIPTION_PLANS = [
+  { id: 'free', name: 'الباقة المجانية', price: 0, duration: 'دائم', features: ['استشارة نصية', 'اختبار نفسي', 'دعم بالبريد'] },
+  { id: 'basic', name: 'الباقة الأساسية', price: 1500, duration: 'شهرياً', featured: true, features: ['5 استشارات', '10 اختبارات', 'محادثة مختص', 'أولوية'] },
+  { id: 'premium', name: 'الباقة المميزة', price: 3500, duration: 'شهرياً', features: ['استشارات لا محدودة', 'اختبارات لا محدودة', 'جلسة فيديو أسبوعية', 'دعم 24/7'] },
+  { id: 'family', name: 'باقة العائلة', price: 6000, duration: 'شهرياً', features: ['كل مزايا المميزة', '4 أفراد', 'جلسات عائلية'] }
+];
+
+const PLATFORM_COMMISSION = 0.15;
+const TIME_SLOTS = ['09:00','10:00','11:00','12:00','14:00','15:00','16:00','17:00','18:00','19:00','20:00'];
+
+/* ===== الاختبارات النفسية ===== */
+const OBJECTIVE_TESTS = [
+  { id: 'beck_depression', name: 'اختبار بيك للاكتئاب', category: 'الاكتئاب', questionsCount: 21, description: 'تقييم أعراض الاكتئاب (بيك 1961)',
+    questions: [
+      { text: 'لا أشعر بالحزن.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالحزن.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالحزن طوال الوقت ولا أستطيع التخلص منه.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالحزن لدرجة لا أطيقها.', options: ['0','1','2','3'] },
+      { text: 'لا أشعر بأنني فاشل بشكل عام.', options: ['0','1','2','3'] },
+      { text: 'أشعر بأنني أواجه من الفشل أكثر مما يواجهه الإنسان العادي.', options: ['0','1','2','3'] },
+      { text: 'عندما أنظر إلى حياتي الماضية، أرى الكثير من الفشل.', options: ['0','1','2','3'] },
+      { text: 'أشعر بأنني إنسان فاشل فشلاً تاماً.', options: ['0','1','2','3'] },
+      { text: 'ما زالت الأشياء تعطيني شعوراً بالرضا كما كانت عادة.', options: ['0','1','2','3'] },
+      { text: 'لا أشعر بمتعة في الأشياء على النحو الذي كنت أشعر به عادة.', options: ['0','1','2','3'] },
+      { text: 'لم أعد أشعر بأية متعة حقيقية في أي شيء على الإطلاق.', options: ['0','1','2','3'] },
+      { text: 'لدي شعور بعدم الرضا والملل من كل الأشياء.', options: ['0','1','2','3'] },
+      { text: 'لا يوجد لدي أي شعور بالذنب.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالذنب في بعض الأوقات.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالذنب في معظم الأوقات.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالذنب في كافة الأوقات.', options: ['0','1','2','3'] },
+      { text: 'لا أشعر بأنني أستحق عقاباً من أي نوع.', options: ['0','1','2','3'] },
+      { text: 'أشعر بأنني أستحق العقاب أحياناً.', options: ['0','1','2','3'] },
+      { text: 'كثيراً ما أشعر بأنني أستحق العقاب.', options: ['0','1','2','3'] },
+      { text: 'أحس بأنني أعاقب وأعذب في حياتي وإنني أستحق ذلك.', options: ['0','1','2','3'] },
+      { text: 'لا أشعر بخيبة الأمل في نفسي.', options: ['0','1','2','3'] }
+    ] },
+  { id: 'taylor_anxiety', name: 'اختبار تايلور للقلق', category: 'القلق', questionsCount: 30, description: 'مقياس تايلور للقلق الظاهر',
+    questions: [
+      { text: 'نومي مضطرب ومقطع.', options: ['0','1'] },
+      { text: 'مرت بي أوقات لم أستطع خلالها النوم بسبب القلق.', options: ['0','1'] },
+      { text: 'مخاوفي قليلة جداً مقارنة بأصدقائي.', options: ['0','1'] },
+      { text: 'أعتقد أنني أكثر عصبية من معظم الناس.', options: ['0','1'] },
+      { text: 'تأتيني أحلام مزعجة (كوابيس) كل عدة ليال.', options: ['0','1'] },
+      { text: 'لدي متاعب أحياناً في معدتي.', options: ['0','1'] },
+      { text: 'غالباً ما ألاحظ أن يداي ترتجفان.', options: ['0','1'] },
+      { text: 'أعاني أحياناً من نوبات إسهال.', options: ['0','1'] },
+      { text: 'تثير قلقي أمور العمل والمال.', options: ['0','1'] },
+      { text: 'تصيبني نوبات من الغثيان.', options: ['0','1'] },
+      { text: 'كثيراً ما أخشى أن يحمر وجهي خجلاً.', options: ['0','1'] },
+      { text: 'أشعر بجوع في كل الأوقات تقريباً.', options: ['0','1'] },
+      { text: 'أثنى في نفسي كثيراً.', options: ['0','1'] },
+      { text: 'أتعب بسرعة.', options: ['0','1'] },
+      { text: 'يجعلني الانتظار عصبياً.', options: ['0','1'] },
+      { text: 'كثيراً ما أصاب بصداع.', options: ['0','1'] },
+      { text: 'لا بد أن أعترف بأنني شعرت بالقلق على أشياء لا قيمة لها.', options: ['0','1'] },
+      { text: 'لا أستطيع أن أركز تفكيري في شيء واحد.', options: ['0','1'] },
+      { text: 'لا أرتبك بسهولة.', options: ['0','1'] },
+      { text: 'أعتقد أحياناً أنني لا أصلح بالمرة.', options: ['0','1'] },
+      { text: 'أنا شخص متوتر جداً.', options: ['0','1'] },
+      { text: 'أرتبك أحياناً لدرجة تجعل العرق يتساقط مني.', options: ['0','1'] },
+      { text: 'يحمر وجهي خجلاً بدرجة أكبر عندما أتحدث للآخرين.', options: ['0','1'] },
+      { text: 'أنا أكثر حساسية من غالبية الناس.', options: ['0','1'] },
+      { text: 'مرت بي أوقات شعرت خلالها بتراكم الصعاب.', options: ['0','1'] },
+      { text: 'أكون متوتراً للغاية أثناء القيام بعمل ما.', options: ['0','1'] },
+      { text: 'يداي وقدمي باردتان في العادة.', options: ['0','1'] },
+      { text: 'أحياناً أحلم بأشياء أفضل الاحتفاظ بها لنفسي.', options: ['0','1'] },
+      { text: 'لا تنقصني الثقة بالنفس.', options: ['0','1'] },
+      { text: 'أشعر بالقلق في كثير من الأحيان.', options: ['0','1'] }
+    ] },
+  { id: 'school_attitude', name: 'اتجاهات الطلبة نحو المدرسة', category: 'تربوي', questionsCount: 15, description: 'قياس اتجاهات الطلبة نحو المدرسة',
+    questions: [
+      { text: 'أشعر بالملل خلال الحصص الدراسية.', options: ['0','1','2','3','4'] },
+      { text: 'أقف لجانب المعلم عندما يتعرض للإهانة.', options: ['0','1','2','3','4'] },
+      { text: 'أرى أن مدرستي جميلة.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر أن بعض المعلمين يسببون لي كراهية المدرسة.', options: ['0','1','2','3','4'] },
+      { text: 'أحب معلمي مدرستي.', options: ['0','1','2','3','4'] },
+      { text: 'أجد متعة في إعاقة سير الحصص.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالسعادة عند ذهابي إلى المدرسة.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالملل إذا بقيت في المدرسة لنهائية الدوام.', options: ['0','1','2','3','4'] },
+      { text: 'أفضل الخروج من الحصص لممارسة الألعاب.', options: ['0','1','2','3','4'] },
+      { text: 'أكره الغياب عن المدرسة لو كنت مريضاً.', options: ['0','1','2','3','4'] },
+      { text: 'أشارك فيما يدور في الحصة من نقاش.', options: ['0','1','2','3','4'] },
+      { text: 'أنزعج من الذهاب إلى المكتبة.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالملل عند قراءتي للكتب المدرسية.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالارتياح عندما يغيب بعض المعلمين.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر أن نجاح زملائي هو نجاح لي.', options: ['0','1','2','3','4'] }
+    ] },
+  { id: 'needs_inventory', name: 'قائمة الحاجات الإرشادية', category: 'إرشادي', questionsCount: 20, description: 'قائمة الحاجات الإرشادية للطلبة',
+    questions: [
+      { text: 'أتعب بسرعة.', options: ['0','1','2','3','4'] },
+      { text: 'وزني أقل أو أكثر من اللازم.', options: ['0','1','2','3','4'] },
+      { text: 'أعاني من مشكلة إبصار.', options: ['0','1','2','3','4'] },
+      { text: 'أعاني من مشكلة سمع.', options: ['0','1','2','3','4'] },
+      { text: 'كثيراً ما أصاب بأمراض البرد.', options: ['0','1','2','3','4'] },
+      { text: 'كثيراً ما أعاني من الصداع.', options: ['0','1','2','3','4'] },
+      { text: 'أعاني من فقدان الشهية.', options: ['0','1','2','3','4'] },
+      { text: 'لا أعرف كيف أدرس.', options: ['0','1','2','3','4'] },
+      { text: 'كثيراً ما أعاني من الملل داخل الصف.', options: ['0','1','2','3','4'] },
+      { text: 'أعاني من ضعف التركيز أثناء الدراسة.', options: ['0','1','2','3','4'] },
+      { text: 'أخاف من الفشل الدراسي.', options: ['0','1','2','3','4'] },
+      { text: 'أعاني من السرحان (أحلام اليقظة).', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالقلق دائماً.', options: ['0','1','2','3','4'] },
+      { text: 'لا أفهم ما أقرأ بسهولة.', options: ['0','1','2','3','4'] },
+      { text: 'لا أعرف كيف أعبر عن نفسي بوضوح.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالكآبة والحزن باستمرار.', options: ['0','1','2','3','4'] },
+      { text: 'لا أعرف ماذا أفعل بعد تخرجي.', options: ['0','1','2','3','4'] },
+      { text: 'لا أتناول الغذاء الصحي المناسب.', options: ['0','1','2','3','4'] },
+      { text: 'تقلقني التغيرات الجسمية التي تظهر علي.', options: ['0','1','2','3','4'] },
+      { text: 'أعاني من عجز في تغطية مصروفي اليومي.', options: ['0','1','2','3','4'] }
+    ] },
+  { id: 'aggressive_behavior', name: 'مقياس السلوك العدواني', category: 'سلوكي', questionsCount: 15, description: 'مقياس السلوك العدواني للأطفال والمراهقين',
+    questions: [
+      { text: 'يسبب الأذى للآخرين بطريق مباشر.', options: ['0','1','2'] },
+      { text: 'يبصق على الآخرين.', options: ['0','1','2'] },
+      { text: 'يدفع أو يخمش أو يقرص الآخرين.', options: ['0','1','2'] },
+      { text: 'يشد شعر الآخرين أو آذانهم.', options: ['0','1','2'] },
+      { text: 'يعض الآخرين.', options: ['0','1','2'] },
+      { text: 'يرفس أو يضرب أو يصفع الآخرين.', options: ['0','1','2'] },
+      { text: 'يرمي الأشياء على الآخرين.', options: ['0','1','2'] },
+      { text: 'يمزق أو يشد ملبسه.', options: ['0','1','2'] },
+      { text: 'يلوث ممتلكاته.', options: ['0','1','2'] },
+      { text: 'يمزق دفاتره أو كتبه.', options: ['0','1','2'] },
+      { text: 'يمزق ممتلكات الآخرين.', options: ['0','1','2'] },
+      { text: 'يكسر الشبابيك.', options: ['0','1','2'] },
+      { text: 'يصرخ ويصيح.', options: ['0','1','2'] },
+      { text: 'يضرب الأشياء بقدميه وهو يصرخ.', options: ['0','1','2'] },
+      { text: 'مزاجه سريع الغضب.', options: ['0','1','2'] }
+    ] },
+  { id: 'personality_test', name: 'اختبار الشخصية (أيزنك)', category: 'شخصية', questionsCount: 15, description: 'اختبار الشخصية لايزنك',
+    questions: [
+      { text: 'هل تتغير مزاجيتك بسرعة؟', options: ['0','1'] },
+      { text: 'هل تعاني من تقلبات مزاجية؟', options: ['0','1'] },
+      { text: 'هل تشعر بالقلق أحياناً؟', options: ['0','1'] },
+      { text: 'هل تجد صعوبة في النوم؟', options: ['0','1'] },
+      { text: 'هل تشعر بالتوتر في المواقف الاجتماعية؟', options: ['0','1'] },
+      { text: 'هل تفكر كثيراً قبل التصرف؟', options: ['0','1'] },
+      { text: 'هل تحب الاختلاط بالناس؟', options: ['0','1'] },
+      { text: 'هل تجد صعوبة في التعبير عن مشاعرك؟', options: ['0','1'] },
+      { text: 'هل تشعر بالوحدة أحياناً؟', options: ['0','1'] },
+      { text: 'هل تصاب بالإحباط بسهولة؟', options: ['0','1'] },
+      { text: 'هل تفضل العمل الجماعي؟', options: ['0','1'] },
+      { text: 'هل تشعر بالذنب بعد اتخاذ القرارات؟', options: ['0','1'] },
+      { text: 'هل تتأثر بآراء الآخرين؟', options: ['0','1'] },
+      { text: 'هل تجد صعوبة في اتخاذ القرارات؟', options: ['0','1'] },
+      { text: 'هل تشعر بالراحة في الأماكن المزدحمة؟', options: ['0','1'] }
+    ] },
+  { id: 'rotter_locus', name: 'مقياس روتان للضبط', category: 'شخصية', questionsCount: 10, description: 'مقياس روتان لضبط موضع السيطرة',
+    questions: [
+      { text: 'يقع الأولاد في المشكلات لأن آبائهم يعاقبونهم كثيراً.', options: ['0','1'] },
+      { text: 'يعود الكثير مما يصيب الناس إلى حظهم السيء.', options: ['0','1'] },
+      { text: 'من الأسباب الرئيسية لوقوع الحروب عدم اهتمام الناس بالسياسة.', options: ['0','1'] },
+      { text: 'يحصل الناس في النهاية على الاحترام الذي يستحقونه.', options: ['0','1'] },
+      { text: 'لا معنى لفكرة عدم عدالة المدرسين تجاه طلابهم.', options: ['0','1'] },
+      { text: 'لا يمكن للمرء أن يكون قائداً دون توفر الفرص.', options: ['0','1'] },
+      { text: 'مهما تبذل من جهد فسيظل هناك من يكرهك.', options: ['0','1'] },
+      { text: 'الوراثة تحدد شخصية الفرد.', options: ['0','1'] },
+      { text: 'خبرات الفرد تحدد شخصيته.', options: ['0','1'] },
+      { text: 'اعتماد المرء على القدر لا يجدي.', options: ['0','1'] }
+    ] },
+  { id: 'career_maturity', name: 'النضج المهني', category: 'مهني', questionsCount: 10, description: 'قياس مستوى النضج المهني',
+    questions: [
+      { text: 'أعرف ما هو التخصص الذي أرغب في دراسته.', options: ['0','1'] },
+      { text: 'لدي خطة واضحة لمستقبلي المهني.', options: ['0','1'] },
+      { text: 'أعرف ما هي المهن التي تناسب قدراتي.', options: ['0','1'] },
+      { text: 'أبحث عن معلومات حول التخصصات الجامعية.', options: ['0','1'] },
+      { text: 'أستطيع اتخاذ قرار مهني بنفسي.', options: ['0','1'] },
+      { text: 'أعرف الفرق بين التخصصات المتاحة.', options: ['0','1'] },
+      { text: 'لدي أهداف مهنية واضحة.', options: ['0','1'] },
+      { text: 'أعرف كيف أبحث عن عمل مناسب.', options: ['0','1'] },
+      { text: 'أستطيع التخطيط لمساري التعليمي.', options: ['0','1'] },
+      { text: 'أعرف مهاراتي وقدراتي المهنية.', options: ['0','1'] }
+    ] },
+  { id: 'self_concept', name: 'مفهوم الذات للأطفال', category: 'شخصية', questionsCount: 15, description: 'قائمة مفهوم الذات للأطفال (7-16 سنة)',
+    questions: [
+      { text: 'أنا سعيد بنفسي.', options: ['0','1'] },
+      { text: 'أنا راضٍ عن شكلي.', options: ['0','1'] },
+      { text: 'أنا فخور بنفسي.', options: ['0','1'] },
+      { text: 'أشعر أنني شخص مهم.', options: ['0','1'] },
+      { text: 'أثق بنفسي.', options: ['0','1'] },
+      { text: 'أحب نفسي كما أنا.', options: ['0','1'] },
+      { text: 'أشعر بالأمان.', options: ['0','1'] },
+      { text: 'أستطيع التعبير عن مشاعري.', options: ['0','1'] },
+      { text: 'لدي أصدقاء جيدون.', options: ['0','1'] },
+      { text: 'أشعر أن الآخرين يحبونني.', options: ['0','1'] },
+      { text: 'أستطيع حل مشاكلي.', options: ['0','1'] },
+      { text: 'أشعر بالنجاح في دراستي.', options: ['0','1'] },
+      { text: 'أستطيع التعامل مع الضغوط.', options: ['0','1'] },
+      { text: 'أشعر بالسعادة في حياتي.', options: ['0','1'] },
+      { text: 'لدي طموحات وأهداف.', options: ['0','1'] }
+    ] },
+  { id: 'positive_thinking', name: 'مقياس التفكير الإيجابي', category: 'شخصية', questionsCount: 15, description: 'قياس مستوى التفكير الإيجابي',
+    questions: [
+      { text: 'أرى الجانب الإيجابي في أي موقف.', options: ['0','1','2','3','4'] },
+      { text: 'أثق في قدرتي على التغلب على الصعاب.', options: ['0','1','2','3','4'] },
+      { text: 'أحاول أن أكون متفائلاً في كل الأمور.', options: ['0','1','2','3','4'] },
+      { text: 'أتعلم من أخطائي.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالرضا عن حياتي.', options: ['0','1','2','3','4'] },
+      { text: 'أتمتع بأفكار إيجابية معظم الوقت.', options: ['0','1','2','3','4'] },
+      { text: 'أستطيع تحويل الأفكار السلبية إلى إيجابية.', options: ['0','1','2','3','4'] },
+      { text: 'لدي أمل في المستقبل.', options: ['0','1','2','3','4'] },
+      { text: 'أتعامل مع المشكلات بهدوء.', options: ['0','1','2','3','4'] },
+      { text: 'أقدر الأشياء الجيدة في حياتي.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالطاقة الإيجابية.', options: ['0','1','2','3','4'] },
+      { text: 'أنظر إلى الفشل كفرصة للتعلم.', options: ['0','1','2','3','4'] },
+      { text: 'أساعد الآخرين دون توقع مقابل.', options: ['0','1','2','3','4'] },
+      { text: 'أعبر عن مشاعري الإيجابية.', options: ['0','1','2','3','4'] },
+      { text: 'أعتقد أن الحياة جميلة.', options: ['0','1','2','3','4'] }
+    ] },
+  { id: 'assertiveness', name: 'مقياس توكيد الذات', category: 'شخصية', questionsCount: 15, description: 'مقياس توكيد الذات وتقديرها',
+    questions: [
+      { text: 'أستطيع التعبير عن رأيي بوضوح.', options: ['0','1','2','3','4'] },
+      { text: 'أعرف كيف أرفض الطلبات غير المعقولة.', options: ['0','1','2','3','4'] },
+      { text: 'أدافع عن حقوقي بثقة.', options: ['0','1','2','3','4'] },
+      { text: 'أستطيع التعبير عن مشاعري بصراحة.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالثقة عند التحدث أمام الآخرين.', options: ['0','1','2','3','4'] },
+      { text: 'أطلب ما أحتاجه دون تردد.', options: ['0','1','2','3','4'] },
+      { text: 'أواجه الآخرين دون خوف.', options: ['0','1','2','3','4'] },
+      { text: 'أعبر عن غضبي بطريقة مناسبة.', options: ['0','1','2','3','4'] },
+      { text: 'أستطيع تقدير ذاتي.', options: ['0','1','2','3','4'] },
+      { text: 'أتقبل النقد البناء.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالراحة في المواقف الاجتماعية.', options: ['0','1','2','3','4'] },
+      { text: 'أستطيع اتخاذ القرارات بثقة.', options: ['0','1','2','3','4'] },
+      { text: 'أعبر عن إعجابي بالآخرين.', options: ['0','1','2','3','4'] },
+      { text: 'أقبل نفسي بعيوبها.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بأنني شخص قادر.', options: ['0','1','2','3','4'] }
+    ] },
+  { id: 'stress_scale', name: 'مقياس الضغوط النفسية', category: 'نفسي', questionsCount: 15, description: 'قياس الضغوط النفسية',
+    questions: [
+      { text: 'أشعر بالتوتر في معظم الأوقات.', options: ['0','1','2','3'] },
+      { text: 'أعاني من صداع متكرر.', options: ['0','1','2','3'] },
+      { text: 'أجد صعوبة في الاسترخاء.', options: ['0','1','2','3'] },
+      { text: 'أنام بصعوبة.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالإرهاق المستمر.', options: ['0','1','2','3'] },
+      { text: 'أنفعل بسرعة.', options: ['0','1','2','3'] },
+      { text: 'أعاني من مشاكل في المعدة.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالقلق من المستقبل.', options: ['0','1','2','3'] },
+      { text: 'أجد صعوبة في التركيز.', options: ['0','1','2','3'] },
+      { text: 'أشعر بأنني لا أستطيع التحكم في أموري.', options: ['0','1','2','3'] },
+      { text: 'أعاني من آلام في العضلات.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالإحباط بسهولة.', options: ['0','1','2','3'] },
+      { text: 'أعاني من ضيق في التنفس.', options: ['0','1','2','3'] },
+      { text: 'أشعر بالعزلة عن الآخرين.', options: ['0','1','2','3'] },
+      { text: 'أشعر أن الحياة صعبة.', options: ['0','1','2','3'] }
+    ] },
+  { id: 'rebellion', name: 'مقياس التمرد', category: 'سلوكي', questionsCount: 10, description: 'قياس مستوى التمرد',
+    questions: [
+      { text: 'أرفض الأوامر التي لا تعجبني.', options: ['0','1','2','3','4'] },
+      { text: 'أخالف القوانين أحياناً.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالغضب عند تقييد حريتي.', options: ['0','1','2','3','4'] },
+      { text: 'أرفض النصائح من الكبار.', options: ['0','1','2','3','4'] },
+      { text: 'أحب أن أفعل الأشياء بطريقتي.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر بالتمرد على التقاليد.', options: ['0','1','2','3','4'] },
+      { text: 'أرفض السلطة أحياناً.', options: ['0','1','2','3','4'] },
+      { text: 'أتصرف بعناد.', options: ['0','1','2','3','4'] },
+      { text: 'أشعر أن الآخرين يفرضون رأيهم علي.', options: ['0','1','2','3','4'] },
+      { text: 'أحب أن أكون مختلفاً عن الآخرين.', options: ['0','1','2','3','4'] }
+    ] },
+  { id: 'career_choice', name: 'اختبار التخصص الجامعي', category: 'مهني', questionsCount: 10, description: 'اختبار لتحديد التخصص الجامعي المناسب',
+    questions: [
+      { text: 'أحب المواد العلمية (رياضيات، فيزياء).', options: ['0','1','2'] },
+      { text: 'أحب المواد الأدبية (لغة، تاريخ).', options: ['0','1','2'] },
+      { text: 'أحب المواد الطبية (أحياء، كيمياء).', options: ['0','1','2'] },
+      { text: 'أحب المواد التقنية (حاسوب، برمجة).', options: ['0','1','2'] },
+      { text: 'أحب العمل مع الناس.', options: ['0','1','2'] },
+      { text: 'أحب العمل المكتبي.', options: ['0','1','2'] },
+      { text: 'أحب الإبداع والفنون.', options: ['0','1','2'] },
+      { text: 'أحب التجارة والأعمال.', options: ['0','1','2'] },
+      { text: 'أحب البحث والتحليل.', options: ['0','1','2'] },
+      { text: 'أحب التعليم والتدريس.', options: ['0','1','2'] }
+    ] }
+];
+
+let projectiveTestsList = [
+  { id: 'rorschach', name: 'اختبار رورشاخ', category: 'إسقاطي', imageCount: 3, isProjective: true, description: 'اختبار البقع الحبرية', images: [
+    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400"><rect fill="%23f0fdf4" width="500" height="400"/><ellipse cx="250" cy="200" rx="150" ry="100" fill="%23333"/><ellipse cx="180" cy="180" rx="40" ry="50" fill="%23666"/><ellipse cx="320" cy="180" rx="40" ry="50" fill="%23666"/></svg>',
+    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400"><rect fill="%23f0fdf4" width="500" height="400"/><path d="M100,200 Q250,50 400,200 Q250,350 100,200 Z" fill="%23333"/><circle cx="200" cy="200" r="30" fill="%23c00"/><circle cx="300" cy="200" r="30" fill="%23c00"/></svg>',
+    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400"><rect fill="%23f0fdf4" width="500" height="400"/><rect x="150" y="150" width="200" height="150" fill="%23333" rx="20"/><circle cx="220" cy="210" r="15" fill="%23fff"/><circle cx="280" cy="210" r="15" fill="%23fff"/></svg>'
+  ], isDrawingTest: false },
+  { id: 'tat', name: 'اختبار TAT', category: 'إسقاطي', imageCount: 3, isProjective: true, description: 'اختبار تفهم الموضوع', images: [
+    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400"><rect fill="%23f0fdf4" width="500" height="400"/><rect x="100" y="200" width="300" height="150" fill="%23888"/><circle cx="250" cy="150" r="40" fill="%23fc9"/></svg>',
+    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400"><rect fill="%23f0fdf4" width="500" height="400"/><rect x="50" y="250" width="400" height="100" fill="%23666"/><rect x="200" y="100" width="100" height="150" fill="%23c96"/></svg>',
+    'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="500" height="400"><rect fill="%23f0fdf4" width="500" height="400"/><path d="M150,300 L250,100 L350,300 Z" fill="%23888"/></svg>'
+  ], isDrawingTest: false },
+  { id: 'draw_man', name: 'اختبار رسم الرجل', category: 'إسقاطي', imageCount: 1, isProjective: true, isDrawingTest: true, description: 'اختبار رسم الرجل', images: [] },
+  { id: 'draw_tree', name: 'اختبار رسم الشجرة', category: 'إسقاطي', imageCount: 1, isProjective: true, isDrawingTest: true, description: 'اختبار رسم الشجرة', images: [] }
+];
+
+let customObjectiveTests = [], specialistVideos = [], educationalGames = [];
+let users = [], consultations = [], chatMessages = [], sessions = [], ratings = [], testResults = [];
+let transactions = [], userWallets = {}, userSubscriptions = {}, bookings = [], settlements = [];
+let currentUser = null, currentSpecialist = null;
+let currentChatSpecialistId = null, currentChatPid = null;
+let localStream = null, mediaRecorder = null, isRecording = false, recordingInterval = null, recordingSeconds = 0;
+let recordedBlob = null, voiceDataUrl = null, fileDataUrl = null, fileName = null, fileType = null;
+let textSavedFlag = false, voiceSavedFlag = false, fileSavedFlag = false;
+let currentPlanToBuy = null;
+let bookingDraft = { sessionType: null, specialistId: null, specialistName: null, date: null, time: null };
+let drawingCanvas, drawingCtx, drawingColor = '#000000', brushSize = 2;
+let currentRotation = 0, currentZoom = 1;
+
+/* ===== التحميل ===== */
+function loadStoredData() {
+  try {
+    users = JSON.parse(localStorage.getItem('users') || '[]');
+    consultations = JSON.parse(localStorage.getItem('consultations') || '[]');
+    chatMessages = JSON.parse(localStorage.getItem('chatMessages') || '[]');
+    sessions = JSON.parse(localStorage.getItem('sessions') || '[]');
+    ratings = JSON.parse(localStorage.getItem('ratings') || '[]');
+    testResults = JSON.parse(localStorage.getItem('testResults') || '[]');
+    transactions = JSON.parse(localStorage.getItem('transactions') || '[]');
+    userWallets = JSON.parse(localStorage.getItem('userWallets') || '{}');
+    userSubscriptions = JSON.parse(localStorage.getItem('userSubscriptions') || '{}');
+    bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    settlements = JSON.parse(localStorage.getItem('settlements') || '[]');
+    customObjectiveTests = JSON.parse(localStorage.getItem('customObjectiveTests') || '[]');
+    const savedProj = localStorage.getItem('projectiveTestsList');
+    if (savedProj) projectiveTestsList = JSON.parse(savedProj);
+    specialistVideos = JSON.parse(localStorage.getItem('specialistVideos') || '[]');
+    educationalGames = JSON.parse(localStorage.getItem('educationalGames') || '[]');
+    const u = localStorage.getItem('currentUser');
+    if (u) { currentUser = JSON.parse(u); showPatientPage(); }
+    const s = localStorage.getItem('currentSpecialist');
+    if (s) { currentSpecialist = JSON.parse(s); showSpecialistDashboard(); }
+  } catch(e) { console.error(e); }
+}
+
+function saveAllData() {
+  localStorage.setItem('users', JSON.stringify(users));
+  localStorage.setItem('consultations', JSON.stringify(consultations));
+  localStorage.setItem('chatMessages', JSON.stringify(chatMessages));
+  localStorage.setItem('sessions', JSON.stringify(sessions));
+  localStorage.setItem('ratings', JSON.stringify(ratings));
+  localStorage.setItem('testResults', JSON.stringify(testResults));
+  localStorage.setItem('transactions', JSON.stringify(transactions));
+  localStorage.setItem('userWallets', JSON.stringify(userWallets));
+  localStorage.setItem('userSubscriptions', JSON.stringify(userSubscriptions));
+  localStorage.setItem('bookings', JSON.stringify(bookings));
+  localStorage.setItem('settlements', JSON.stringify(settlements));
+  localStorage.setItem('customObjectiveTests', JSON.stringify(customObjectiveTests));
+  localStorage.setItem('projectiveTestsList', JSON.stringify(projectiveTestsList));
+  localStorage.setItem('specialistVideos', JSON.stringify(specialistVideos));
+  localStorage.setItem('educationalGames', JSON.stringify(educationalGames));
+}
+
+function showNotification(msg, type) {
+  document.querySelector('.notification-toast')?.remove();
+  const n = document.createElement('div');
+  n.className = `alert alert-${type} notification-toast`;
+  n.innerHTML = msg;
+  n.style.display = 'block';
+  document.body.appendChild(n);
+  setTimeout(() => n.remove(), 4000);
+}
+
+function escapeHtml(t) { if (!t) return ''; const d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+function getSpecialistAvgRating(sid) {
+  const r = ratings.filter(x => x.specialist_id === sid);
+  if (r.length === 0) return '0.0';
+  return (r.reduce((a, b) => a + b.score, 0) / r.length).toFixed(1);
+}
+
+function getTestInterpretation(score, max) {
+  const pct = (score / max) * 100;
+  if (pct <= 25) return { level: 'منخفض', class: 'score-normal', desc: 'النتيجة ضمن المستوى المنخفض' };
+  if (pct <= 50) return { level: 'متوسط منخفض', class: 'score-mild', desc: 'النتيجة ضمن المستوى المتوسط المنخفض' };
+  if (pct <= 75) return { level: 'متوسط مرتفع', class: 'score-moderate', desc: 'النتيجة ضمن المستوى المتوسط المرتفع' };
+  return { level: 'مرتفع', class: 'score-severe', desc: 'النتيجة ضمن المستوى المرتفع' };
+}
+
+/* ===== التنقل ===== */
+function showHomePage() {
+  document.getElementById('homePage').style.display = 'block';
+  document.getElementById('patientPage').style.display = 'none';
+  document.getElementById('specialistDashboard').style.display = 'none';
+  document.getElementById('authButtons').style.display = 'flex';
+  document.getElementById('userInfo').style.display = 'none';
+}
+function scrollToServices() { document.getElementById('servicesSection')?.scrollIntoView({ behavior: 'smooth' }); }
+function scrollToAbout() { document.getElementById('aboutSection')?.scrollIntoView({ behavior: 'smooth' }); }
+function openContactModal() { document.getElementById('contactModal').classList.add('active'); }
+function closeContactModal() { document.getElementById('contactModal').classList.remove('active'); }
+function openLoginModal() { document.getElementById('loginModal').classList.add('active'); }
+function closeLoginModal() { document.getElementById('loginModal').classList.remove('active'); }
+function openRegisterModal() { document.getElementById('registerModal').classList.add('active'); }
+function closeRegisterModal() { document.getElementById('registerModal').classList.remove('active'); }
+function openSpecialistLogin() { document.getElementById('specialistLoginModal').classList.add('active'); }
+function closeSpecialistLogin() { document.getElementById('specialistLoginModal').classList.remove('active'); }
+
+/* ===== التسجيل ===== */
+function handleRegister(e) {
+  e.preventDefault();
+  const name = document.getElementById('regName').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const phone = document.getElementById('regPhone').value.trim();
+  const age = document.getElementById('regAge').value;
+  const gender = document.getElementById('regGender').value;
+  const password = document.getElementById('regPassword').value;
+  if (users.find(u => u.email === email)) {
+    const err = document.getElementById('regError'); err.textContent = '⚠️ البريد موجود'; err.style.display = 'block'; return;
+  }
+  users.push({ id: Date.now(), name, email, phone, age: parseInt(age), gender, password, createdAt: new Date().toISOString() });
+  saveAllData();
+  const ok = document.getElementById('regSuccess'); ok.textContent = '✅ تم إنشاء الحساب!'; ok.style.display = 'block';
+  setTimeout(() => { closeRegisterModal(); openLoginModal(); }, 1500);
+}
+
+function handleLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const user = users.find(u => u.email === email && u.password === password);
+  if (user) {
+    currentUser = user;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    closeLoginModal();
+    showPatientPage();
+    showNotification(`مرحباً ${currentUser.name}!`, 'success');
+  } else {
+    const err = document.getElementById('loginError'); err.textContent = '⚠️ بيانات غير صحيحة'; err.style.display = 'block';
+  }
+}
+
+function handleSpecialistLogin(e) {
+  e.preventDefault();
+  const email = document.getElementById('specEmail').value.trim();
+  const password = document.getElementById('specPassword').value;
+  const spec = SPECIALISTS_DATA[email];
+  if (spec && spec.password === password) {
+    currentSpecialist = spec;
+    localStorage.setItem('currentSpecialist', JSON.stringify(currentSpecialist));
+    closeSpecialistLogin();
+    showSpecialistDashboard();
+    showNotification(`مرحباً ${currentSpecialist.name}!`, 'success');
+  } else {
+    const err = document.getElementById('specLoginError'); err.textContent = '⚠️ بيانات غير صحيحة'; err.style.display = 'block';
+  }
+}
+
+function logout() {
+  if (localStream) { localStream.getTracks().forEach(t => t.stop()); localStream = null; }
+  currentUser = null; currentSpecialist = null;
+  localStorage.removeItem('currentUser');
+  localStorage.removeItem('currentSpecialist');
+  showHomePage();
+}
+
+/* ===== صفحة المريض ===== */
+function showPatientPage() {
+  document.getElementById('homePage').style.display = 'none';
+  document.getElementById('patientPage').style.display = 'block';
+  document.getElementById('specialistDashboard').style.display = 'none';
+  document.getElementById('authButtons').style.display = 'none';
+  document.getElementById('userInfo').style.display = 'flex';
+  document.getElementById('welcomeMessage').innerHTML = `<i class="fas fa-user"></i> ${currentUser.name}`;
+  updateWalletBadge();
+  initPatientPage();
+  showPatientTab('chats');
+}
+
+function initPatientPage() {
+  textSavedFlag = false; voiceSavedFlag = false; fileSavedFlag = false;
+  const ta = document.getElementById('problem-text'), saveBtn = document.getElementById('save-text-btn'), count = document.getElementById('char-count');
+  if (ta) {
+    ta.value = ''; count.innerText = '0'; saveBtn.disabled = true;
+    ta.oninput = function() { const len = this.value.length; count.innerText = len; saveBtn.disabled = len < 20; };
+  }
+  if (saveBtn) saveBtn.onclick = () => {
+    if (ta.value.length >= 20) {
+      textSavedFlag = true;
+      document.getElementById('textSavedMessage').style.display = 'block';
+      setTimeout(() => document.getElementById('textSavedMessage').style.display = 'none', 2000);
+      saveBtn.disabled = true;
+    }
+  };
+  setupVoiceRecording();
+  setupFileUpload();
+  setupMethodTabs();
+}
+
+function setupVoiceRecording() {
+  const recordBtn = document.getElementById('record-btn'), playBtn = document.getElementById('play-voice-btn');
+  const deleteBtn = document.getElementById('delete-voice-btn'), saveBtn = document.getElementById('save-voice-btn');
+  const preview = document.getElementById('voice-preview'), timer = document.getElementById('timer');
+  if (!recordBtn) return;
+  recordBtn.onclick = async () => {
+    if (isRecording) {
+      if (mediaRecorder) mediaRecorder.stop();
+      isRecording = false;
+      recordBtn.classList.remove('recording');
+      recordBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+      if (recordingInterval) clearInterval(recordingInterval);
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      mediaRecorder = new MediaRecorder(stream);
+      const chunks = [];
+      mediaRecorder.ondataavailable = e => chunks.push(e.data);
+      mediaRecorder.onstop = () => {
+        recordedBlob = new Blob(chunks, { type: 'audio/webm' });
+        preview.src = URL.createObjectURL(recordedBlob);
+        preview.style.display = 'block';
+        playBtn.disabled = false; deleteBtn.disabled = false; saveBtn.disabled = false;
+        stream.getTracks().forEach(t => t.stop());
+      };
+      mediaRecorder.start();
+      isRecording = true;
+      recordBtn.classList.add('recording');
+      recordBtn.innerHTML = '<i class="fas fa-stop"></i>';
+      recordingSeconds = 0;
+      if (timer) timer.innerText = '00:00';
+      if (recordingInterval) clearInterval(recordingInterval);
+      recordingInterval = setInterval(() => {
+        recordingSeconds++;
+        const m = Math.floor(recordingSeconds / 60), s = recordingSeconds % 60;
+        if (timer) timer.innerText = `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+      }, 1000);
+    } catch(e) { alert('لا يمكن الوصول للميكروفون'); }
+  };
+  if (playBtn) playBtn.onclick = () => { if (preview.src) preview.play(); };
+  if (deleteBtn) deleteBtn.onclick = () => {
+    recordedBlob = null; voiceDataUrl = null;
+    preview.src = ''; preview.style.display = 'none';
+    playBtn.disabled = true; deleteBtn.disabled = true; saveBtn.disabled = true;
+    voiceSavedFlag = false;
+    if (timer) timer.innerText = '00:00';
+  };
+  if (saveBtn) saveBtn.onclick = () => {
+    if (recordedBlob) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        voiceDataUrl = reader.result; voiceSavedFlag = true;
+        document.getElementById('voiceSavedMessage').style.display = 'block';
+        setTimeout(() => document.getElementById('voiceSavedMessage').style.display = 'none', 2000);
+        saveBtn.disabled = true;
+      };
+      reader.readAsDataURL(recordedBlob);
+    }
+  };
+}
+
+function setupFileUpload() {
+  const fileInput = document.getElementById('file-upload'), saveBtn = document.getElementById('save-upload-btn'), info = document.getElementById('file-info');
+  if (!fileInput) return;
+  fileInput.onchange = () => {
+    if (fileInput.files.length) {
+      const f = fileInput.files[0];
+      fileName = f.name; fileType = f.type;
+      if (info) info.innerHTML = `<div style="background:#dcfce7;padding:0.5rem;border-radius:8px;margin-top:0.5rem;">📄 ${f.name} (${(f.size/1024).toFixed(2)} KB)</div>`;
+      if (saveBtn) saveBtn.disabled = false;
+    }
+  };
+  if (saveBtn) saveBtn.onclick = () => {
+    if (fileInput.files.length) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        fileDataUrl = reader.result; fileSavedFlag = true;
+        document.getElementById('fileSavedMessage').style.display = 'block';
+        setTimeout(() => document.getElementById('fileSavedMessage').style.display = 'none', 2000);
+        saveBtn.disabled = true;
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    }
+  };
+}
+
+function setupMethodTabs() {
+  document.querySelectorAll('.method-tab').forEach(tab => {
+    tab.onclick = () => {
+      document.querySelectorAll('.method-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelectorAll('.input-container').forEach(c => c.classList.remove('active'));
+      document.getElementById(tab.dataset.method + '-input').classList.add('active');
+    };
+  });
+}
+
+function submitProblem() {
+  if (!currentUser) { showNotification('سجل الدخول', 'warning'); openLoginModal(); return; }
+  const active = document.querySelector('.method-tab.active')?.dataset.method;
+  let content = '', voiceData = null, fileData = null, fn = null, ft = null;
+  if (active === 'text') {
+    content = document.getElementById('problem-text')?.value || '';
+    if (content.length < 20) { alert('⚠️ اشرح مشكلتك بأكثر من 20 حرف'); return; }
+  } else if (active === 'voice') {
+    if (!voiceSavedFlag) { alert('⚠️ احفظ التسجيل'); return; }
+    content = 'تسجيل صوتي - ' + new Date().toLocaleString();
+    voiceData = voiceDataUrl;
+  } else if (active === 'upload') {
+    if (!fileSavedFlag) { alert('⚠️ احفظ الملف'); return; }
+    content = 'ملف: ' + fileName;
+    fileData = fileDataUrl; fn = fileName; ft = fileType;
+  }
+  consultations.push({ id: Date.now(), user_id: currentUser.id, user_name: currentUser.name, user_age: currentUser.age, user_gender: currentUser.gender, user_phone: currentUser.phone, content, method: active, voice_data: voiceData, file_data: fileData, file_name: fn, file_type: ft, status: 'pending', specialist_response: null, created_at: new Date().toISOString() });
+  saveAllData();
+  showNotification('✅ تم إرسال استشارتك!', 'success');
+  document.getElementById('problem-text').value = '';
+  textSavedFlag = false; voiceSavedFlag = false; fileSavedFlag = false;
+  document.getElementById('save-text-btn').disabled = true;
+  document.getElementById('voice-preview').src = '';
+  document.getElementById('voice-preview').style.display = 'none';
+  document.getElementById('file-info').innerHTML = '';
+  showPatientTab('problems');
+}
+
+function showPatientTab(tab) {
+  document.querySelectorAll('.patient-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.patient-panel').forEach(p => p.style.display = 'none');
+  const map = { chats: 1, bookings: 2, problems: 3, ratings: 4 };
+  document.querySelector(`.patient-tab:nth-child(${map[tab]})`).classList.add('active');
+  const panels = { chats: 'patientChatsPanel', bookings: 'patientBookingsPanel', problems: 'patientProblemsPanel', ratings: 'patientRatingsPanel' };
+  document.getElementById(panels[tab]).style.display = 'block';
+  if (tab === 'chats') renderPatientChats();
+  if (tab === 'bookings') renderPatientBookings();
+  if (tab === 'problems') renderPatientProblems();
+  if (tab === 'ratings') renderPatientRatings();
+}
+
+function getChatMessages(pid, sid) {
+  return chatMessages.filter(m => (m.sender_id === pid && m.receiver_id === sid) || (m.sender_id === sid && m.receiver_id === pid)).sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+}
+
+function saveMessage(pid, sid, message, senderType, senderId) {
+  chatMessages.push({ id: Date.now(), sender_type: senderType, sender_id: senderId, receiver_id: senderType === 'patient' ? sid : pid, message, is_read: false, created_at: new Date().toISOString() });
+  saveAllData();
+}
+
+function renderPatientChats() {
+  const container = document.getElementById('patientChatsPanel');
+  const specialists = Object.values(SPECIALISTS_DATA);
+  let html = `<h3 style="margin-bottom:1rem;"><i class="fas fa-comments"></i> محادثاتي</h3>`;
+  specialists.forEach(s => {
+    const msgs = getChatMessages(currentUser.id, s.id);
+    const last = msgs[msgs.length - 1];
+    html += `<div class="card chat-list-card" onclick="openPatientChat(${s.id}, '${s.name}')">
+      <div class="chat-avatar">${s.avatar}</div>
+      <div style="flex:1"><strong>${s.name}</strong><br><small>${s.title}</small><br><small>${last ? (last.message.length > 40 ? last.message.substring(0, 40) + '...' : last.message) : 'ابدأ المحادثة'}</small></div>
+      <button class="btn btn-primary btn-sm" onclick="event.stopPropagation(); startVideoCallWithSpecialist(${s.id}, '${s.name}')"><i class="fas fa-video"></i></button>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function openPatientChat(sid, sname) {
+  currentChatSpecialistId = sid;
+  renderPatientChatWindow(sid, sname);
+}
+
+function renderPatientChatWindow(sid, sname) {
+  const container = document.getElementById('patientChatsPanel');
+  const messages = getChatMessages(currentUser.id, sid);
+  let html = '';
+  messages.forEach(msg => {
+    const sent = msg.sender_type === 'patient';
+    html += `<div class="message ${sent ? 'sent' : 'received'}"><div class="message-bubble">${escapeHtml(msg.message)}</div><div class="message-time">${new Date(msg.created_at).toLocaleTimeString('ar')}</div></div>`;
+  });
+  container.innerHTML = `<div style="display:flex;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
+    <h3>الدردشة مع: ${sname}</h3>
+    <button class="btn btn-outline btn-sm" onclick="renderPatientChats()">رجوع</button>
+  </div>
+  <div class="chat-container">
+    <div class="chat-messages" id="patientChatMessages">${html || '<div style="text-align:center;padding:2rem;color:#94a3b8;">✨ ابدأ المحادثة</div>'}</div>
+    <div class="chat-input-area">
+      <input type="text" id="patientChatInput" class="chat-input" placeholder="اكتب رسالتك..." onkeypress="if(event.key==='Enter') sendPatientMessageToSpecialist()">
+      <button class="btn btn-primary" onclick="sendPatientMessageToSpecialist()">إرسال</button>
+    </div>
+  </div>`;
+  setTimeout(() => { const c = document.getElementById('patientChatMessages'); if (c) c.scrollTop = c.scrollHeight; }, 100);
+}
+
+function sendPatientMessageToSpecialist() {
+  const input = document.getElementById('patientChatInput');
+  const msg = input?.value.trim();
+  if (!msg || !currentChatSpecialistId) return;
+  saveMessage(currentUser.id, currentChatSpecialistId, msg, 'patient', currentUser.id);
+  input.value = '';
+  const spec = Object.values(SPECIALISTS_DATA).find(s => s.id === currentChatSpecialistId);
+  renderPatientChatWindow(currentChatSpecialistId, spec?.name || '');
+}
+
+function renderPatientProblems() {
+  const container = document.getElementById('patientProblemsPanel');
+  const userProblems = consultations.filter(c => c.user_id === currentUser?.id);
+  if (userProblems.length === 0) { container.innerHTML = `<div class="card">📭 لم ترسل أي استشارة بعد</div>`; return; }
+  let html = `<h3 style="margin-bottom:1rem;">استشاراتي</h3>`;
+  userProblems.forEach(p => {
+    let preview = '';
+    if (p.method === 'text') preview = `<div style="background:#fff;padding:1rem;border-radius:12px;">${escapeHtml(p.content)}</div>`;
+    else if (p.method === 'voice') preview = `<div><strong>🎙️ التسجيل:</strong><br><audio controls src="${p.voice_data}" style="width:100%"></audio></div>`;
+    else preview = `<div><strong>📎 الملف:</strong> <a href="${p.file_data}" download="${p.file_name}">تحميل</a></div>`;
+    html += `<div class="card">${preview}<div style="margin-top:.5rem;"><span class="tx-status tx-paid">تم الإرسال</span></div>
+      ${p.specialist_response ? `<div class="alert alert-info" style="display:block;margin-top:.5rem;"><strong>رد المختص:</strong><br>${escapeHtml(p.specialist_response)}</div>` : ''}</div>`;
+  });
+  container.innerHTML = html;
+}
+
+function renderPatientRatings() {
+  const container = document.getElementById('patientRatingsPanel');
+  const specialists = Object.values(SPECIALISTS_DATA);
+  let html = `<h3 style="margin-bottom:1rem;"><i class="fas fa-star"></i> تقييم المختصين</h3>`;
+  specialists.forEach(spec => {
+    const userRating = ratings.find(r => r.patient_id === currentUser.id && r.specialist_id === spec.id);
+    const avg = getSpecialistAvgRating(spec.id);
+    html += `<div class="card"><div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+      <div class="chat-avatar">${spec.avatar}</div>
+      <div style="flex:1"><strong>${spec.name}</strong><br><small>${spec.title}</small><br><small>⭐ ${avg}/5</small></div>
+      <div>${userRating ? `<span class="tx-status tx-paid">✅ قيمته ${userRating.score}/5</span>` : `
+        <div class="rating-stars" data-spec-id="${spec.id}">${[1,2,3,4,5].map(i => `<i class="far fa-star rating-star" data-score="${i}"></i>`).join('')}</div>
+        <input type="text" id="ratingComment_${spec.id}" class="chat-input" placeholder="تعليق" style="margin-top:.4rem;width:170px;font-size:.85rem;padding:.4rem .8rem;">
+        <button class="btn btn-sm btn-primary" onclick="submitRating(${spec.id}, '${spec.name}')" style="margin-top:.4rem;">إرسال</button>`}</div>
+    </div></div>`;
+  });
+  container.innerHTML = html;
+  attachRatingEvents();
+}
+
+function attachRatingEvents() {
+  document.querySelectorAll('.rating-stars').forEach(starDiv => {
+    const stars = starDiv.querySelectorAll('.rating-star');
+    stars.forEach(star => {
+      star.onmouseover = function() { const s = parseInt(this.dataset.score); stars.forEach((x, i) => x.className = i < s ? 'fas fa-star rating-star' : 'far fa-star rating-star'); };
+      star.onmouseout = () => stars.forEach(x => x.className = 'far fa-star rating-star');
+      star.onclick = function() { const s = parseInt(this.dataset.score); starDiv.dataset.selectedScore = s; stars.forEach((x, i) => x.className = i < s ? 'fas fa-star rating-star' : 'far fa-star rating-star'); };
+    });
+  });
+}
+
+function submitRating(sid, sname) {
+  const starDiv = document.querySelector(`.rating-stars[data-spec-id="${sid}"]`);
+  const score = parseInt(starDiv?.dataset.selectedScore);
+  if (!score) { alert('⚠️ اختر النجوم'); return; }
+  const comment = document.getElementById(`ratingComment_${sid}`)?.value.trim() || '';
+  ratings.push({ id: Date.now(), patient_id: currentUser.id, specialist_id: sid, specialist_name: sname, score, comment, created_at: new Date().toISOString() });
+  saveAllData();
+  showNotification(`✅ تم تقييم ${sname} بـ ${score}/5`, 'success');
+  renderPatientRatings();
+}
+
+/* ===== المحفظة ===== */
+function getWalletBalance(uid) { return userWallets[uid] || 0; }
+function updateWalletBadge() { const b = document.getElementById('walletBalance'); if (b && currentUser) b.textContent = getWalletBalance(currentUser.id).toLocaleString('en'); }
+function addTransaction(uid, type, amount, method, description, status = 'paid') {
+  transactions.unshift({ id: 'TX_' + Date.now(), user_id: uid, type, amount, method, description, status, created_at: new Date().toISOString() });
+  saveAllData();
+}
+function openWalletModal() {
+  if (!currentUser) return;
+  document.getElementById('walletModal').classList.add('active');
+  document.getElementById('walletModalBalance').textContent = getWalletBalance(currentUser.id).toLocaleString('en') + ' دج';
+  const sub = userSubscriptions[currentUser.id];
+  let planLabel = '<span class="price-tag">الباقة المجانية</span>';
+  if (sub) {
+    const plan = SUBSCRIPTION_PLANS.find(p => p.id === sub.planId);
+    if (new Date(sub.expiry) < new Date()) planLabel = '<span class="tx-status tx-failed">انتهى الاشتراك</span>';
+    else planLabel = `<span class="price-tag">${plan?.name}</span>`;
+  }
+  document.getElementById('walletContent').innerHTML = `<h3 style="margin-bottom:.5rem;">باقتي الحالية</h3>
+    <div class="card">${planLabel}</div>
+    <button class="btn btn-primary" onclick="closeWalletModal(); openPlansModal()" style="width:100%;margin-top:.5rem;"><i class="fas fa-crown"></i> ترقية الباقة</button>`;
+}
+function closeWalletModal() { document.getElementById('walletModal').classList.remove('active'); }
+function showWalletTransactions() {
+  const content = document.getElementById('walletContent');
+  const txs = transactions.filter(t => t.user_id === currentUser.id);
+  if (txs.length === 0) { content.innerHTML = '<div class="card">📭 لا توجد معاملات</div>'; return; }
+  let html = '<h3 style="margin-bottom:.5rem;">سجل المعاملات</h3><div style="overflow-x:auto;"><table class="tx-table"><thead><tr><th>التاريخ</th><th>النوع</th><th>المبلغ</th><th>الحالة</th></tr></thead><tbody>';
+  txs.forEach(t => {
+    const tl = { deposit: 'شحن', subscription: 'اشتراك', session_payment: 'دفع جلسة', refund: 'استرجاع' }[t.type] || t.type;
+    const cls = t.status === 'paid' ? 'tx-paid' : t.status === 'pending' ? 'tx-pending' : 'tx-failed';
+    html += `<tr><td>${new Date(t.created_at).toLocaleDateString('ar')}</td><td>${tl}</td><td>${t.amount.toLocaleString('en')} دج</td><td><span class="tx-status ${cls}">${t.status === 'paid' ? 'مكتمل' : 'معلق'}</span></td></tr>`;
+  });
+  content.innerHTML = html + '</tbody></table></div>';
+}
+function openDepositModal() { if (!currentUser) return; document.getElementById('depositModal').classList.add('active'); }
+function closeDepositModal() { document.getElementById('depositModal').classList.remove('active'); }
+function setDepositAmount(v) { document.getElementById('depositAmount').value = v; }
+function selectPayMethod(el) {
+  el.parentElement.querySelectorAll('.pay-method').forEach(m => m.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function processDeposit() {
+  const amount = parseFloat(document.getElementById('depositAmount').value);
+  if (!amount || amount < 100) { showNotification('⚠️ الحد الأدنى 100 دج', 'warning'); return; }
+  const method = document.querySelector('#depositMethods .pay-method.selected')?.dataset.method || 'card';
+  const ml = { card: 'بطاقة بنكية', edahabia: 'الذهبية', ccp: 'CCP' }[method];
+  userWallets[currentUser.id] = getWalletBalance(currentUser.id) + amount;
+  addTransaction(currentUser.id, 'deposit', amount, ml, 'شحن رصيد');
+  updateWalletBadge();
+  closeDepositModal();
+  showNotification(`✅ تم شحن ${amount.toLocaleString('en')} دج`, 'success');
+  openWalletModal();
+}
+
+/* ===== الباقات ===== */
+function openPlansModal() {
+  if (!currentUser) { showNotification('سجل الدخول', 'warning'); return; }
+  document.getElementById('plansModal').classList.add('active');
+  document.getElementById('plansGrid').innerHTML = SUBSCRIPTION_PLANS.map(p => `
+    <div class="plan-card ${p.featured ? 'featured' : ''}">
+      <h3>${p.name}</h3>
+      <div class="plan-price">${p.price === 0 ? 'مجاناً' : p.price.toLocaleString('en') + ' <small>دج</small>'}</div>
+      <div style="color:#166534;font-size:.85rem;">${p.duration}</div>
+      <ul class="plan-features">${p.features.map(f => `<li><i class="fas fa-check"></i>${f}</li>`).join('')}</ul>
+      ${p.price === 0 ? '<button class="btn btn-outline" style="width:100%;" disabled>مجانية</button>' : `<button class="btn btn-primary" style="width:100%;" onclick="openCheckout('${p.id}')"><i class="fas fa-shopping-cart"></i> اشترك</button>`}
+    </div>`).join('');
+}
+function closePlansModal() { document.getElementById('plansModal').classList.remove('active'); }
+function openCheckout(planId) {
+  const plan = SUBSCRIPTION_PLANS.find(p => p.id === planId);
+  if (!plan) return;
+  currentPlanToBuy = plan;
+  closePlansModal();
+  document.getElementById('checkoutModal').classList.add('active');
+  const balance = getWalletBalance(currentUser.id);
+  document.getElementById('checkoutSummary').innerHTML = `
+    <h3>${plan.name}</h3>
+    <div class="invoice-row"><span>السعر:</span><strong>${plan.price.toLocaleString('en')} دج</strong></div>
+    <div class="invoice-row invoice-total"><span>رصيد محفظتك:</span><span>${balance.toLocaleString('en')} دج</span></div>
+    ${balance < plan.price ? '<div class="alert alert-warning" style="display:block;margin-top:.5rem;">⚠️ رصيدك غير كافٍ</div>' : ''}`;
+  document.getElementById('checkoutMethod').value = balance >= plan.price ? 'wallet' : 'card';
+  toggleCardFields();
+}
+function closeCheckoutModal() { document.getElementById('checkoutModal').classList.remove('active'); currentPlanToBuy = null; }
+function toggleCardFields() { const m = document.getElementById('checkoutMethod').value; document.getElementById('cardFields').style.display = (m === 'card' || m === 'edahabia') ? 'block' : 'none'; }
+function toggleBookingCardFields() { const m = document.getElementById('bookingPayMethod').value; document.getElementById('bookingCardFields').style.display = m === 'card' ? 'block' : 'none'; document.getElementById('bookingCcpFields').style.display = m === 'ccp' ? 'block' : 'none'; }
+function formatCardNumber(input) {
+  const v = input.value.replace(/\D/g, '').substring(0, 16);
+  input.value = v.replace(/(.{4})/g, '$1 ').trim();
+  const preview = document.getElementById('cardPreviewNum');
+  if (preview) preview.textContent = input.value || '•••• •••• •••• ••••';
+}
+function formatExpiry(input) {
+  let v = input.value.replace(/\D/g, '').substring(0, 4);
+  if (v.length >= 2) v = v.substring(0, 2) + '/' + v.substring(2);
+  input.value = v;
+  const preview = document.getElementById('cardPreviewExp');
+  if (preview) preview.textContent = input.value || 'MM/YY';
+}
+function confirmCheckout() {
+  if (!currentPlanToBuy || !currentUser) return;
+  const plan = currentPlanToBuy, method = document.getElementById('checkoutMethod').value;
+  const balance = getWalletBalance(currentUser.id);
+  if (method === 'wallet' && balance < plan.price) { showNotification('⚠️ رصيد غير كافٍ', 'warning'); return; }
+  const ml = { wallet: 'المحفظة', card: 'بطاقة بنكية', edahabia: 'الذهبية', ccp: 'CCP' }[method];
+  if (method === 'wallet') userWallets[currentUser.id] = balance - plan.price;
+  addTransaction(currentUser.id, 'subscription', plan.price, ml, `اشتراك ${plan.name}`);
+  const expiry = new Date(); expiry.setDate(expiry.getDate() + 30);
+  userSubscriptions[currentUser.id] = { planId: plan.id, expiry: expiry.toISOString() };
+  updateWalletBadge();
+  closeCheckoutModal();
+  showNotification(`🎉 تم تفعيل ${plan.name}!`, 'success');
+  openWalletModal();
+}
+
+/* ===== حجز الجلسات ===== */
+function openBookingModal() {
+  if (!currentUser) { showNotification('سجل الدخول', 'warning'); openLoginModal(); return; }
+  bookingDraft = { sessionType: null, specialistId: null, specialistName: null, date: null, time: null };
+  document.getElementById('bookingModal').classList.add('active');
+  renderSessionTypes();
+  renderSpecialistsForBooking();
+  bookingGoToStep(1);
+  const tomorrow = new Date(); tomorrow.setDate(tomorrow.getDate() + 1);
+  const dateInput = document.getElementById('bookingDate');
+  dateInput.min = new Date().toISOString().split('T')[0];
+  dateInput.value = tomorrow.toISOString().split('T')[0];
+  renderTimeSlots();
+}
+function closeBookingModal() { document.getElementById('bookingModal').classList.remove('active'); }
+function bookingGoToStep(step) {
+  if (step > 1 && !bookingDraft.sessionType) { showNotification('⚠️ اختر نوع الجلسة', 'warning'); return; }
+  if (step > 2 && !bookingDraft.specialistId) { showNotification('⚠️ اختر المختص', 'warning'); return; }
+  if (step > 3 && (!bookingDraft.date || !bookingDraft.time)) { showNotification('⚠️ اختر الموعد', 'warning'); return; }
+  document.querySelectorAll('#bookingModal .pay-step').forEach(s => s.classList.remove('active'));
+  document.getElementById('bookStep' + step).classList.add('active');
+  document.querySelectorAll('#bookingSteps .booking-step-dot').forEach(d => {
+    const ds = parseInt(d.dataset.step);
+    d.classList.toggle('active', ds === step);
+    d.classList.toggle('done', ds < step);
+  });
+  if (step === 3) renderTimeSlots();
+  if (step === 4) renderBookingSummary();
+}
+function renderSessionTypes() {
+  document.getElementById('sessionTypesGrid').innerHTML = SESSION_TYPES.map(t => `
+    <div class="session-type-card ${bookingDraft.sessionType === t.id ? 'selected' : ''}" onclick="selectSessionType('${t.id}')">
+      <i class="${t.icon}"></i><h3>${t.name}</h3>
+      <div class="session-type-price">${t.price.toLocaleString('en')} دج</div>
+      <div style="color:#166534;font-size:.8rem;">⏱ ${t.duration}</div>
+    </div>`).join('');
+}
+function selectSessionType(id) { bookingDraft.sessionType = id; renderSessionTypes(); }
+function renderSpecialistsForBooking() {
+  document.getElementById('specialistsPickList').innerHTML = Object.values(SPECIALISTS_DATA).map(s => {
+    const sel = bookingDraft.specialistId === s.id;
+    return `<div class="specialist-pick-card ${sel ? 'selected' : ''}" onclick="selectSpecialistForBooking(${s.id}, '${s.name}')">
+      <div class="chat-avatar" style="width:55px;height:55px;font-size:1.6rem;">${s.avatar}</div>
+      <div style="flex:1"><strong>${s.name}</strong><br><small style="color:#166534;">${s.title}</small><br><small>⭐ ${getSpecialistAvgRating(s.id)}/5</small></div>
+      ${sel ? '<i class="fas fa-check-circle" style="color:#16a34a;font-size:1.4rem;"></i>' : ''}
+    </div>`;
+  }).join('');
+}
+function selectSpecialistForBooking(id, name) { bookingDraft.specialistId = id; bookingDraft.specialistName = name; renderSpecialistsForBooking(); }
+function renderTimeSlots() {
+  const grid = document.getElementById('timeSlotsGrid'), dateInput = document.getElementById('bookingDate');
+  if (!dateInput?.value) { grid.innerHTML = '<p style="color:#94a3b8;">اختر التاريخ</p>'; return; }
+  bookingDraft.date = dateInput.value;
+  const taken = bookings.filter(b => b.specialist_id === bookingDraft.specialistId && b.date === bookingDraft.date && b.status !== 'cancelled').map(b => b.time);
+  grid.innerHTML = TIME_SLOTS.map(t => {
+    const isBooked = taken.includes(t), isSel = bookingDraft.time === t;
+    return `<div class="time-slot ${isBooked ? 'booked' : ''} ${isSel ? 'selected' : ''}" ${isBooked ? '' : `onclick="selectTimeSlot('${t}')"`}>${t}</div>`;
+  }).join('');
+}
+function selectTimeSlot(t) { bookingDraft.time = t; renderTimeSlots(); }
+function renderBookingSummary() {
+  const type = SESSION_TYPES.find(t => t.id === bookingDraft.sessionType);
+  if (!type) return;
+  const balance = getWalletBalance(currentUser.id);
+  document.getElementById('bookingSummaryBox').innerHTML = `<div class="booking-summary">
+    <div class="row"><span>نوع الجلسة</span><strong>${type.name}</strong></div>
+    <div class="row"><span>المختص</span><strong>${bookingDraft.specialistName}</strong></div>
+    <div class="row"><span>التاريخ</span><strong>${bookingDraft.date}</strong></div>
+    <div class="row"><span>الوقت</span><strong>${bookingDraft.time}</strong></div>
+    <div class="row"><span>المدة</span><strong>${type.duration}</strong></div>
+    <div class="row total"><span>الإجمالي</span><span>${type.price.toLocaleString('en')} دج</span></div>
+    <div class="row" style="font-size:.8rem;color:#94a3b8;"><span>رصيدك</span><span>${balance.toLocaleString('en')} دج</span></div>
+  </div>`;
+  document.getElementById('bookingPayMethod').value = balance >= type.price ? 'wallet' : 'card';
+  toggleBookingCardFields();
+}
+function confirmBookingAndPay() {
+  const type = SESSION_TYPES.find(t => t.id === bookingDraft.sessionType);
+  if (!type) return;
+  const method = document.getElementById('bookingPayMethod').value;
+  const balance = getWalletBalance(currentUser.id);
+  if (method === 'wallet' && balance < type.price) { showNotification('⚠️ رصيد غير كافٍ', 'warning'); return; }
+  if (method === 'card') {
+    const num = document.getElementById('bkCardNumber').value.replace(/\s/g, '');
+    if (num.length < 16) { showNotification('⚠️ رقم البطاقة غير صحيح', 'warning'); return; }
+  }
+  if (method === 'ccp' && !document.getElementById('bkCcpReceipt').value.trim()) { showNotification('⚠️ أدخل رقم الوصل', 'warning'); return; }
+  const ml = { wallet: 'المحفظة', card: 'الذهبية/CIB', ccp: 'CCP' }[method];
+  const commission = Math.round(type.price * PLATFORM_COMMISSION);
+  const specialistShare = type.price - commission;
+  if (method === 'wallet') userWallets[currentUser.id] = balance - type.price;
+  const booking = {
+    id: 'BK_' + Date.now(), patient_id: currentUser.id, patient_name: currentUser.name,
+    specialist_id: bookingDraft.specialistId, specialist_name: bookingDraft.specialistName,
+    session_type: type.id, session_name: type.name, date: bookingDraft.date, time: bookingDraft.time,
+    duration: type.duration, price: type.price, commission, specialist_share: specialistShare,
+    payment_method: ml, payment_status: method === 'ccp' ? 'pending' : 'paid',
+    status: method === 'ccp' ? 'pending_payment' : 'confirmed',
+    ccp_receipt: method === 'ccp' ? document.getElementById('bkCcpReceipt').value.trim() : null,
+    meet_link: 'https://meet.google.com/' + Math.random().toString(36).substring(2, 5) + '-' + Math.random().toString(36).substring(2, 6) + '-' + Math.random().toString(36).substring(2, 5),
+    created_at: new Date().toISOString()
+  };
+  bookings.push(booking);
+  addTransaction(currentUser.id, 'session_payment', type.price, ml, `حجز ${type.name}`, booking.payment_status === 'paid' ? 'paid' : 'pending');
+  if (booking.payment_status === 'paid') {
+    settlements.push({ id: 'ST_' + Date.now(), booking_id: booking.id, specialist_id: booking.specialistId, specialist_name: booking.specialistName, amount: specialistShare, commission, status: 'pending', created_at: new Date().toISOString() });
+  }
+  updateWalletBadge();
+  closeBookingModal();
+  showBookingSuccess(booking);
+}
+function showBookingSuccess(b) {
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content" style="max-width:550px;text-align:center;">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <div style="font-size:3.5rem;color:#16a34a;margin-bottom:.5rem;"><i class="fas fa-check-circle"></i></div>
+    <h2 class="modal-title">${b.status === 'confirmed' ? 'تم الحجز بنجاح!' : 'تم استلام الطلب'}</h2>
+    <div class="alert ${b.status === 'confirmed' ? 'alert-success' : 'alert-warning'}" style="display:block;">${b.status === 'confirmed' ? '✅ تم الدفع وتأكيد الحجز!' : '⏳ الحجز معلق بانتظار تأكيد التحويل.'}</div>
+    <div class="invoice-box" style="text-align:right;margin-top:1rem;">
+      <div class="invoice-row"><span>رقم الحجز</span><strong>${b.id}</strong></div>
+      <div class="invoice-row"><span>الجلسة</span><strong>${b.session_name}</strong></div>
+      <div class="invoice-row"><span>المختص</span><strong>${b.specialist_name}</strong></div>
+      <div class="invoice-row"><span>الموعد</span><strong>${b.date} - ${b.time}</strong></div>
+      <div class="invoice-row invoice-total"><span>المبلغ</span><span>${b.price.toLocaleString('en')} دج</span></div>
+    </div>
+    ${b.status === 'confirmed' ? `<a href="${b.meet_link}" target="_blank" class="btn btn-primary" style="width:100%;margin-top:1rem;"><i class="fab fa-google"></i> رابط Meet</a>` : ''}
+    <button class="btn btn-outline" onclick="this.closest('.modal').remove(); showPatientTab('bookings')" style="width:100%;margin-top:.5rem;">عرض جلساتي</button>
+  </div>`;
+  document.body.appendChild(modal);
+}
+function renderPatientBookings() {
+  const container = document.getElementById('patientBookingsPanel');
+  const myBookings = bookings.filter(b => b.patient_id === currentUser.id).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  if (myBookings.length === 0) { container.innerHTML = `<div class="card">📭 لا توجد جلسات. <button class="btn btn-primary btn-sm" onclick="openBookingModal()">احجز الآن</button></div>`; return; }
+  let html = `<div style="display:flex;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem;">
+    <h3><i class="fas fa-calendar-check"></i> جلساتي (${myBookings.length})</h3>
+    <button class="btn btn-primary btn-sm" onclick="openBookingModal()"><i class="fas fa-plus"></i> حجز جديد</button>
+  </div>`;
+  myBookings.forEach(b => {
+    const statusLabel = b.status === 'confirmed' ? '<span class="tx-status tx-paid">مؤكد ومدفوع</span>'
+      : b.status === 'pending_payment' ? '<span class="tx-status tx-pending">بانتظار الدفع</span>'
+      : '<span class="tx-status tx-failed">ملغاة</span>';
+    html += `<div class="card">
+      <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+        <div><strong>${b.session_name}</strong> مع <strong>${b.specialist_name}</strong><br>
+          <small>📅 ${b.date} - ⏰ ${b.time} (${b.duration})</small><br>
+          <small>💰 ${b.price.toLocaleString('en')} دج - ${b.payment_method}</small></div>
+        <div>${statusLabel}</div>
+      </div>
+      <div style="margin-top:.8rem;display:flex;gap:.5rem;flex-wrap:wrap;">
+        ${b.status === 'confirmed' ? `<a href="${b.meet_link}" target="_blank" class="btn btn-primary btn-sm"><i class="fab fa-google"></i> دخول</a>` : ''}
+        ${b.status === 'confirmed' ? `<button class="btn btn-danger btn-sm" onclick="cancelBooking('${b.id}')"><i class="fas fa-times"></i> إلغاء</button>` : ''}
+        <button class="btn btn-outline btn-sm" onclick="showBookingInvoice('${b.id}')"><i class="fas fa-receipt"></i> فاتورة</button>
+      </div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+function showBookingInvoice(id) {
+  const b = bookings.find(x => x.id === id);
+  if (!b) return;
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content" style="max-width:520px;">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <h2 class="modal-title"><i class="fas fa-file-invoice"></i> فاتورة</h2>
+    <div class="invoice-box">
+      <div style="text-align:center;margin-bottom:1rem;"><strong style="font-size:1.1rem;color:#14532d;">شركة الأمل للصحة النفسية</strong><br><small>${b.id}</small></div>
+      <div class="invoice-row"><span>التاريخ</span><strong>${new Date(b.created_at).toLocaleDateString('ar')}</strong></div>
+      <div class="invoice-row"><span>المريض</span><strong>${b.patient_name}</strong></div>
+      <div class="invoice-row"><span>المختص</span><strong>${b.specialist_name}</strong></div>
+      <div class="invoice-row"><span>الجلسة</span><strong>${b.session_name}</strong></div>
+      <div class="invoice-row"><span>الموعد</span><strong>${b.date} ${b.time}</strong></div>
+      <div class="invoice-row"><span>طريقة الدفع</span><strong>${b.payment_method}</strong></div>
+      <div class="invoice-row invoice-total"><span>الإجمالي</span><span>${b.price.toLocaleString('en')} دج</span></div>
+    </div>
+    <button class="btn btn-primary" onclick="window.print()" style="width:100%;margin-top:1rem;"><i class="fas fa-print"></i> طباعة</button>
+  </div>`;
+  document.body.appendChild(modal);
+}
+function cancelBooking(id) {
+  if (!confirm('إلغاء الحجز؟')) return;
+  const b = bookings.find(x => x.id === id);
+  if (!b) return;
+  b.status = 'cancelled';
+  if (b.payment_status === 'paid' && b.payment_method === 'المحفظة') {
+    userWallets[currentUser.id] = getWalletBalance(currentUser.id) + b.price;
+    addTransaction(currentUser.id, 'refund', b.price, 'المحفظة', `استرجاع ${b.id}`);
+    showNotification('✅ تم الإلغاء واسترجاع المبلغ', 'success');
+  } else showNotification('✅ تم الإلغاء', 'info');
+  settlements = settlements.filter(s => s.booking_id !== id);
+  updateWalletBadge();
+  renderPatientBookings();
+}
+
+/* ===== فيديو ===== */
+async function startVideoCallWithSpecialist(sid, sname) {
+  if (!currentUser) return;
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content" style="max-width:750px;">
+    <span class="modal-close" onclick="endVideoCall(); this.closest('.modal').remove()">&times;</span>
+    <h2>مكالمة مع ${sname}</h2>
+    <div class="video-room">
+      <div class="video-grid">
+        <div class="video-card"><video id="localVideo" autoplay muted playsinline></video><div class="video-label">أنت</div></div>
+        <div class="video-card"><video id="remoteVideo" autoplay playsinline></video><div class="video-label">${sname}</div></div>
+      </div>
+      <div class="meeting-controls">
+        <button class="btn btn-danger" onclick="endVideoCall(); this.closest('.modal').remove()"><i class="fas fa-phone-slash"></i> إنهاء</button>
+        <button class="btn btn-outline" onclick="toggleCamera()"><i class="fas fa-video"></i></button>
+        <button class="btn btn-outline" onclick="toggleMicrophone()"><i class="fas fa-microphone"></i></button>
+      </div>
+    </div>
+  </div>`;
+  document.body.appendChild(modal);
+  try {
+    localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+    document.getElementById('localVideo').srcObject = localStream;
+    showNotification(`✅ تم الاتصال بـ ${sname}`, 'success');
+  } catch(e) { showNotification('❌ لا يمكن الوصول للكاميرا', 'error'); modal.remove(); }
+}
+function endVideoCall() { if (localStream) { localStream.getTracks().forEach(t => t.stop()); localStream = null; } }
+function toggleCamera() { if (localStream) { const v = localStream.getVideoTracks()[0]; if (v) { v.enabled = !v.enabled; showNotification(v.enabled ? '✅ كاميرا مفعلة' : '⛔ كاميرا معطلة', 'info'); } } }
+function toggleMicrophone() { if (localStream) { const a = localStream.getAudioTracks()[0]; if (a) { a.enabled = !a.enabled; showNotification(a.enabled ? '🎤 ميكروفون مفعل' : '🔇 ميكروفون معطل', 'info'); } } }
+
+/* ===== لوحة المختص ===== */
+function showSpecialistDashboard() {
+  document.getElementById('homePage').style.display = 'none';
+  document.getElementById('patientPage').style.display = 'none';
+  document.getElementById('specialistDashboard').style.display = 'block';
+  document.getElementById('authButtons').style.display = 'none';
+  document.getElementById('userInfo').style.display = 'flex';
+  document.getElementById('welcomeMessage').innerHTML = `<i class="fas fa-user-md"></i> ${currentSpecialist.name}`;
+  document.getElementById('specName').innerHTML = `${currentSpecialist.name} <span style="font-size:0.8rem;">⭐ ${getSpecialistAvgRating(currentSpecialist.id)}/5</span>`;
+  document.getElementById('specType').textContent = currentSpecialist.title;
+  document.getElementById('specialistMenu').innerHTML = `
+    <li data-tab="dashboard" class="active"><i class="fas fa-chart-line"></i> لوحة التحكم</li>
+    <li data-tab="bookings"><i class="fas fa-calendar-check"></i> الحجوزات</li>
+    <li data-tab="settlements"><i class="fas fa-hand-holding-usd"></i> مستحقاتي</li>
+    <li data-tab="problems"><i class="fas fa-file-invoice-dollar"></i> الاستشارات</li>
+    <li data-tab="tests"><i class="fas fa-clipboard-list"></i> الاختبارات</li>
+    <li data-tab="chat"><i class="fas fa-comment-dots"></i> الدردشة</li>
+    <li data-tab="patients"><i class="fas fa-users"></i> المرضى</li>
+    <li data-tab="videos"><i class="fas fa-video"></i> فيديوهات تعليمية</li>
+    <li data-tab="games"><i class="fas fa-gamepad"></i> ألعاب تعليمية</li>`;
+  loadTab('dashboard');
+  document.querySelectorAll('.sidebar-menu li').forEach(item => {
+    item.onclick = () => {
+      document.querySelectorAll('.sidebar-menu li').forEach(l => l.classList.remove('active'));
+      item.classList.add('active');
+      loadTab(item.dataset.tab);
+    };
+  });
+}
+
+function loadTab(tab) {
+  const c = document.getElementById('dashboardContent');
+  if (tab === 'dashboard') renderDashboard(c);
+  else if (tab === 'bookings') renderSpecialistBookings(c);
+  else if (tab === 'settlements') renderSpecialistSettlements(c);
+  else if (tab === 'problems') renderProblems(c);
+  else if (tab === 'tests') renderTests(c);
+  else if (tab === 'chat') renderChatList(c);
+  else if (tab === 'patients') renderPatientsList(c);
+  else if (tab === 'videos') renderVideos(c);
+  else if (tab === 'games') renderGames(c);
+}
+
+function renderDashboard(container) {
+  const mb = bookings.filter(b => b.specialist_id === currentSpecialist.id);
+  const pending = consultations.filter(c => c.status === 'pending').length;
+  const earnings = mb.filter(b => b.payment_status === 'paid').reduce((a, b) => a + b.specialist_share, 0);
+  container.innerHTML = `<h2>لوحة التحكم</h2>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number">${mb.length}</div><div class="stat-label">جلساتي</div></div>
+      <div class="stat-card"><div class="stat-number">${pending}</div><div class="stat-label">استشارات معلقة</div></div>
+      <div class="stat-card"><div class="stat-number">${earnings.toLocaleString('en')}</div><div class="stat-label">أرباحي (دج)</div></div>
+      <div class="stat-card"><div class="stat-number">⭐ ${getSpecialistAvgRating(currentSpecialist.id)}</div><div class="stat-label">تقييمي</div></div>
+    </div>
+    <div class="alert alert-info" style="display:block;">مرحباً ${currentSpecialist.name}!</div>`;
+}
+
+function renderSpecialistBookings(container) {
+  const mb = bookings.filter(b => b.specialist_id === currentSpecialist.id).sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+  let html = `<h2><i class="fas fa-calendar-check"></i> حجوزاتي (${mb.length})</h2>`;
+  if (mb.length === 0) html += `<div class="card">📭 لا توجد حجوزات</div>`;
+  else mb.forEach(b => {
+    html += `<div class="card"><div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+      <div><strong>${b.patient_name}</strong><br><small>${b.session_name} - ${b.date} ${b.time}</small></div>
+      <div>${b.status === 'confirmed' ? '<span class="tx-status tx-paid">مؤكد</span>' : '<span class="tx-status tx-pending">معلق</span>'}</div>
+    </div>
+    <div style="margin-top:.5rem;"><strong>💰 نصيبي:</strong> ${b.specialist_share.toLocaleString('en')} دج (عمولة: ${b.commission.toLocaleString('en')} دج)</div>
+    ${b.status === 'confirmed' ? `<a href="${b.meet_link}" target="_blank" class="btn btn-primary btn-sm" style="margin-top:.5rem;"><i class="fab fa-google"></i> دخول</a>` : ''}
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function renderSpecialistSettlements(container) {
+  const ms = settlements.filter(s => s.specialist_id === currentSpecialist.id);
+  const tp = ms.filter(s => s.status === 'pending').reduce((a, b) => a + b.amount, 0);
+  const tpd = ms.filter(s => s.status === 'paid').reduce((a, b) => a + b.amount, 0);
+  let html = `<h2><i class="fas fa-hand-holding-usd"></i> مستحقاتي</h2>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-number">${tp.toLocaleString('en')}</div><div class="stat-label">معلقة (دج)</div></div>
+      <div class="stat-card"><div class="stat-number">${tpd.toLocaleString('en')}</div><div class="stat-label">مدفوعة (دج)</div></div>
+      <div class="stat-card"><div class="stat-number">${ms.length}</div><div class="stat-label">إجمالي</div></div>
+    </div>`;
+  if (ms.length === 0) html += `<div class="card">📭 لا توجد مستحقات</div>`;
+  else {
+    html += `<div style="overflow-x:auto;"><table class="tx-table"><thead><tr><th>التاريخ</th><th>المبلغ</th><th>العمولة</th><th>الحالة</th></tr></thead><tbody>`;
+    ms.forEach(s => { html += `<tr><td>${new Date(s.created_at).toLocaleDateString('ar')}</td><td>${s.amount.toLocaleString('en')} دج</td><td>${s.commission.toLocaleString('en')} دج</td><td><span class="tx-status ${s.status === 'paid' ? 'tx-paid' : 'tx-pending'}">${s.status === 'paid' ? 'مدفوع' : 'معلق'}</span></td></tr>`; });
+    html += '</tbody></table></div>';
+  }
+  container.innerHTML = html;
+}
+
+function renderProblems(container) {
+  let html = `<h2><i class="fas fa-file-invoice-dollar"></i> الاستشارات (${consultations.length})</h2>`;
+  if (consultations.length === 0) html += `<div class="card">📭 لا توجد استشارات</div>`;
+  else consultations.forEach(p => {
+    const user = users.find(u => u.id === p.user_id);
+    let preview = p.method === 'text' ? (p.content?.substring(0, 100) + (p.content?.length > 100 ? '...' : '')) : p.method === 'voice' ? '🎙️ تسجيل صوتي' : '📎 ملف';
+    html += `<div class="card" onclick="viewProblemDetail(${p.id})">
+      <div><i class="fas fa-user-circle"></i> <strong>${user?.name || 'مريض'}</strong> | ${p.status === 'pending' ? '<span class="tx-status tx-pending">معلق</span>' : '<span class="tx-status tx-paid">تم الرد</span>'}</div>
+      <div style="margin-top:.5rem;"><strong>📝 المشكلة:</strong> ${preview}</div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function viewProblemDetail(cid) {
+  const p = consultations.find(c => c.id === cid);
+  if (!p) return;
+  const user = users.find(u => u.id === p.user_id);
+  let ch = '';
+  if (p.method === 'text') ch = `<div style="background:#f0fdf4;padding:1rem;border-radius:12px;"><strong>📝 المشكلة:</strong><br>${escapeHtml(p.content)}</div>`;
+  else if (p.method === 'voice') ch = `<div style="background:#f0fdf4;padding:1rem;border-radius:12px;"><strong>🎙️ التسجيل:</strong><br><audio controls src="${p.voice_data}" style="width:100%"></audio></div>`;
+  else ch = `<div style="background:#f0fdf4;padding:1rem;border-radius:12px;"><strong>📎 الملف:</strong> <a href="${p.file_data}" download="${p.file_name}">تحميل</a></div>`;
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content" style="max-width:650px;">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <h2>تفاصيل الاستشارة</h2>
+    <div style="background:#f0fdf4;padding:1rem;border-radius:12px;margin-bottom:1rem;">
+      <strong>👤 المريض:</strong> ${user?.name} (${user?.age} سنة)<br>
+      <strong>📧 البريد:</strong> ${user?.email}<br>
+      <strong>📱 الهاتف:</strong> ${user?.phone}
+    </div>
+    ${ch}
+    <div class="form-group" style="margin-top:1rem;">
+      <label><strong>✍️ رد المختص:</strong></label>
+      <textarea id="specialistResponse" class="problem-textarea" style="min-height:100px;">${p.specialist_response || ''}</textarea>
+    </div>
+    <div style="display:flex;gap:1rem;margin-top:1rem;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="saveSpecialistResponse(${p.id})"><i class="fas fa-save"></i> حفظ الرد</button>
+      <button class="btn btn-outline" onclick="this.closest('.modal').remove()">إغلاق</button>
+    </div>
+  </div>`;
+  document.body.appendChild(modal);
+}
+
+function saveSpecialistResponse(cid) {
+  const r = document.getElementById('specialistResponse')?.value.trim();
+  if (!r) { alert('⚠️ أدخل رداً'); return; }
+  const p = consultations.find(c => c.id === cid);
+  if (p) { p.specialist_response = r; p.status = 'resolved'; saveAllData(); showNotification('✅ تم حفظ الرد', 'success'); document.querySelector('.modal.active')?.remove(); loadTab('problems'); }
+}
+
+function renderChatList(container) {
+  if (users.length === 0) { container.innerHTML = `<h2>الدردشة</h2><div class="card">📭 لا يوجد مرضى</div>`; return; }
+  let html = `<h2>الدردشة</h2>`;
+  users.forEach(p => {
+    html += `<div class="card chat-list-card" onclick="startChatWithPatient(${p.id}, '${p.name}')">
+      <div class="chat-avatar"><i class="fas fa-user"></i></div>
+      <div style="flex:1"><strong>${p.name}</strong><br><small>${p.age} سنة</small></div>
+    </div>`;
+  });
+  container.innerHTML = html;
+}
+
+function startChatWithPatient(pid, pname) { currentChatPid = pid; renderChatWindow(pid, pname); }
+
+function renderChatWindow(pid, pname) {
+  const c = document.getElementById('dashboardContent');
+  const msgs = getChatMessages(pid, currentSpecialist.id);
+  let mh = '';
+  msgs.forEach(m => { const sent = m.sender_type === 'specialist'; mh += `<div class="message ${sent ? 'sent' : 'received'}"><div class="message-bubble">${escapeHtml(m.message)}</div><div class="message-time">${new Date(m.created_at).toLocaleTimeString('ar')}</div></div>`; });
+  c.innerHTML = `<div style="display:flex;justify-content:space-between;margin-bottom:1rem">
+    <h2>الدردشة مع: ${pname}</h2>
+    <button class="btn btn-outline btn-sm" onclick="renderChatList(document.getElementById('dashboardContent'))">رجوع</button>
+  </div>
+  <div class="chat-container"><div class="chat-messages" id="specChatMsgs">${mh}</div>
+  <div class="chat-input-area"><input type="text" id="specChatInput" class="chat-input" placeholder="اكتب..." onkeypress="if(event.key==='Enter') sendSpecialistMsg()">
+  <button class="btn btn-primary" onclick="sendSpecialistMsg()">إرسال</button></div></div>`;
+  setTimeout(() => { const d = document.getElementById('specChatMsgs'); if (d) d.scrollTop = d.scrollHeight; }, 100);
+}
+
+function sendSpecialistMsg() {
+  const input = document.getElementById('specChatInput');
+  const msg = input?.value.trim();
+  if (!msg || !currentChatPid) return;
+  saveMessage(currentChatPid, currentSpecialist.id, msg, 'specialist', currentSpecialist.id);
+  input.value = '';
+  renderChatWindow(currentChatPid, users.find(u => u.id === currentChatPid)?.name || '');
+}
+
+function renderPatientsList(container) {
+  let html = `<h2><i class="fas fa-users"></i> المرضى (${users.length})</h2>`;
+  if (users.length === 0) html += `<div class="card">📭 لا يوجد مرضى</div>`;
+  else users.forEach(p => { html += `<div class="card"><strong>${escapeHtml(p.name)}</strong><br>📧 ${p.email}<br>📱 ${p.phone}<br>🎂 ${p.age} سنة | ${p.gender}</div>`; });
+  container.innerHTML = html;
+}
+
+/* ============================================
+   الاختبارات النفسية
+   ============================================ */
+function renderTests(container) {
+  let html = `<h2><i class="fas fa-clipboard-list"></i> الاختبارات النفسية</h2>
+    <div style="display:flex;gap:1rem;margin-bottom:2rem;flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="showTestCategory('objective')">الموضوعية (${OBJECTIVE_TESTS.length + customObjectiveTests.length})</button>
+      <button class="btn btn-outline" onclick="showTestCategory('projective')">الإسقاطية (${projectiveTestsList.length})</button>
+      <button class="btn btn-success" onclick="openAddCustomTestModal()"><i class="fas fa-plus-circle"></i> إضافة اختبار</button>
+      <button class="btn btn-success" onclick="openAddProjectiveTestModal()"><i class="fas fa-plus-circle"></i> إضافة إسقاطي</button>
+    </div>
+    <div id="testsListContainer"></div>
+    <h3 style="margin-top:2rem;">نتائج سابقة</h3>`;
+  const myResults = testResults.filter(r => r.specialist_id === currentSpecialist.id);
+  if (myResults.length === 0) html += `<div class="card">📭 لا توجد نتائج</div>`;
+  else myResults.forEach(r => { html += `<div class="card"><strong>${r.patient_name}</strong> - ${r.test_name}<br><small>${r.total_score !== undefined ? `النتيجة: ${r.total_score} - ${r.level}` : 'تم التحليل'}</small></div>`; });
+  container.innerHTML = html;
+  showTestCategory('objective');
+}
+
+function showTestCategory(type) {
+  const c = document.getElementById('testsListContainer');
+  if (!c) return;
+  if (type === 'objective') {
+    const all = [...OBJECTIVE_TESTS, ...customObjectiveTests];
+    let html = `<h3 style="margin-bottom:1rem;">📋 الاختبارات الموضوعية (${all.length})</h3>`;
+    all.forEach(t => {
+      html += `<div class="card test-card" onclick="selectPatientForTest('${t.id}', '${t.name}', ${t.questionsCount})">
+        <h3>${t.name}</h3><span class="price-tag">${t.category}</span><p>${t.description}</p><small>${t.questionsCount} سؤالاً</small>
+      </div>`;
+    });
+    c.innerHTML = html;
+  } else {
+    let html = `<h3 style="margin-bottom:1rem;">📋 الاختبارات الإسقاطية (${projectiveTestsList.length})</h3>`;
+    if (projectiveTestsList.length === 0) html += `<div class="alert alert-info" style="display:block;">📭 لا توجد اختبارات إسقاطية</div>`;
+    else projectiveTestsList.forEach(t => {
+      html += `<div class="card test-card" onclick="selectPatientForProjectiveTest('${t.id}', '${t.name}', ${t.imageCount}, ${t.isDrawingTest || false})">
+        <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;">
+          <div><h3>${t.name}</h3><span class="price-tag">${t.category}</span>
+            <p>${t.description || 'اختبار إسقاطي'}</p>
+            <small>${t.isDrawingTest ? '✏️ اختبار رسم' : (t.imageCount + ' صورة')}</small></div>
+          <div style="display:flex;gap:.5rem;">
+            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation(); deleteProjectiveTest('${t.id}')"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+      </div>`;
+    });
+    c.innerHTML = html;
+  }
+}
+
+function openAddCustomTestModal() {
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content" style="max-width:700px;">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <h2 class="modal-title"><i class="fas fa-plus-circle"></i> إضافة اختبار موضوعي</h2>
+    <div class="form-group"><label>اسم الاختبار</label><input type="text" id="testName" placeholder="مثال: اختبار القلق"></div>
+    <div class="form-group"><label>الفئة</label><input type="text" id="testCategory" value="عام"></div>
+    <div class="form-group"><label>الوصف</label><textarea id="testDesc" rows="2"></textarea></div>
+    <div class="form-group"><label>عدد الأسئلة</label><input type="number" id="questionCount" min="1" max="30" value="3">
+      <button type="button" class="btn btn-outline btn-sm" onclick="generateQuestionFields()" style="margin-top:5px;"><i class="fas fa-sync-alt"></i> إنشاء</button>
+    </div>
+    <div id="questionsContainer" style="max-height:400px;overflow-y:auto;"></div>
+    <button class="btn btn-primary" onclick="saveNewCustomTest()" style="margin-top:20px;width:100%;"><i class="fas fa-save"></i> حفظ الاختبار</button>
+  </div>`;
+  document.body.appendChild(modal);
+  generateQuestionFields();
+}
+
+function generateQuestionFields() {
+  const count = parseInt(document.getElementById('questionCount')?.value) || 3;
+  const c = document.getElementById('questionsContainer');
+  if (!c) return;
+  let html = '<label><strong>✍️ أسئلة:</strong></label>';
+  for (let i = 0; i < count; i++) {
+    html += `<div class="question-item"><input type="text" id="q_${i}" placeholder="السؤال ${i+1}" style="width:100%;padding:8px;border:1px solid #bbf7d0;border-radius:8px;"></div>`;
+  }
+  c.innerHTML = html;
+}
+
+function saveNewCustomTest() {
+  const name = document.getElementById('testName')?.value.trim();
+  const cat = document.getElementById('testCategory')?.value.trim() || 'عام';
+  const desc = document.getElementById('testDesc')?.value.trim() || '';
+  const qc = parseInt(document.getElementById('questionCount')?.value) || 3;
+  if (!name) { alert('⚠️ أدخل اسم الاختبار'); return; }
+  const questions = [];
+  for (let i = 0; i < qc; i++) {
+    const q = document.getElementById(`q_${i}`)?.value.trim();
+    if (!q) { alert(`⚠️ أدخل السؤال ${i+1}`); return; }
+    questions.push({ text: q, options: ['0','1','2','3','4'] });
+  }
+  customObjectiveTests.push({ id: 'custom_' + Date.now(), name, category: cat, questionsCount: qc, description: desc || name, questions });
+  saveAllData();
+  showNotification(`✅ تم إضافة "${name}"`, 'success');
+  document.querySelector('.modal.active')?.remove();
+  loadTab('tests');
+}
+
+function selectPatientForTest(tid, tname, qc) {
+  if (users.length === 0) { alert('⚠️ لا يوجد مرضى'); return; }
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <h2>${tname}</h2>
+    <div class="form-group"><label>اختر المريض</label><select id="testPatientSelect">
+      ${users.map(p => `<option value="${p.id}">${p.name} (${p.age} سنة)</option>`).join('')}
+    </select></div>
+    <button class="btn btn-primary" onclick="startObjectiveTest('${tid}', '${tname}', ${qc})">بدء الاختبار</button>
+  </div>`;
+  document.body.appendChild(modal);
+}
+
+function startObjectiveTest(tid, tname, qc) {
+  const sel = document.getElementById('testPatientSelect');
+  if (!sel) return;
+  const pid = parseInt(sel.value);
+  const pname = sel.options[sel.selectedIndex]?.text.split('(')[0].trim();
+  let test = OBJECTIVE_TESTS.find(t => t.id === tid) || customObjectiveTests.find(t => t.id === tid);
+  if (!test) { alert('الاختبار غير موجود'); return; }
+  const questions = test.questions || [];
+  let qHtml = '';
+  let maxOptions = 0;
+  questions.forEach((q, i) => {
+    const opts = q.options || ['0','1','2','3','4'];
+    maxOptions = Math.max(maxOptions, opts.length);
+    const labels = ['0','1','2','3','4'];
+    qHtml += `<div class="test-question"><p>${i+1}. ${escapeHtml(q.text)}</p><div>`;
+    opts.forEach((val, vi) => {
+      qHtml += `<label style="margin-left:15px;"><input type="radio" name="q${i}" value="${val}"> ${labels[vi] || val}</label>`;
+    });
+    qHtml += `</div></div>`;
+  });
+  const modal = document.querySelector('.modal.active');
+  if (modal) {
+    modal.innerHTML = `<div class="modal-content" style="max-width:700px;">
+      <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+      <h2>${escapeHtml(tname)}</h2>
+      <p><strong>المريض: ${escapeHtml(pname)}</strong></p>
+      <div style="max-height:450px;overflow-y:auto;">${qHtml}</div>
+      <button class="btn btn-primary" onclick="submitObjectiveTest('${tid}', '${tname}', ${pid}, '${pname}', ${questions.length})" style="width:100%;margin-top:20px;"><i class="fas fa-check-circle"></i> حساب النتيجة</button>
+      <div id="testResultMsg"></div>
+    </div>`;
+  }
+}
+
+function submitObjectiveTest(tid, tname, pid, pname, qc) {
+  let total = 0, max = 0;
+  for (let i = 0; i < qc; i++) {
+    const sel = document.querySelector(`input[name="q${i}"]:checked`);
+    if (!sel) { alert(`⚠️ أجب على السؤال ${i+1}`); return; }
+    total += parseInt(sel.value);
+    max += 4;
+  }
+  const interp = getTestInterpretation(total, max);
+  testResults.push({ id: Date.now(), test_id: tid, test_name: tname, patient_id: pid, patient_name: pname, specialist_id: currentSpecialist.id, total_score: total, max_score: max, level: interp.level, date: new Date().toISOString() });
+  saveAllData();
+  const msg = document.getElementById('testResultMsg');
+  if (msg) {
+    msg.innerHTML = `<div class="alert alert-success" style="display:block;margin-top:1rem;">✅ تم الحفظ!<br><strong>${total}/${max} - ${interp.level}</strong><br>${interp.desc}</div>`;
+    setTimeout(() => { document.querySelector('.modal.active')?.remove(); loadTab('tests'); }, 2500);
+  }
+}
+
+function openAddProjectiveTestModal() {
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content" style="max-width:700px;">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <h2 class="modal-title"><i class="fas fa-plus-circle"></i> إضافة اختبار إسقاطي</h2>
+    <div class="form-group"><label>اسم الاختبار</label><input type="text" id="projTestName" placeholder="مثال: اختبار رورشاخ"></div>
+    <div class="form-group"><label>الفئة</label><input type="text" id="projTestCategory" value="إسقاطي"></div>
+    <div class="form-group"><label>الوصف</label><textarea id="projTestDesc" rows="2"></textarea></div>
+    <div class="form-group"><label>نوع الاختبار</label>
+      <select id="projTestType"><option value="images">اختبار صور</option><option value="drawing">اختبار رسم</option></select>
+    </div>
+    <div id="projImagesSection" style="display:block">
+      <div class="form-group"><label>عدد الصور</label><input type="number" id="projImageCount" min="1" max="20" value="3"></div>
+      <div id="projImageUploadsContainer"></div>
+      <button type="button" class="btn btn-outline btn-sm" onclick="addProjImageUploadField()" style="margin-top:.5rem"><i class="fas fa-plus"></i> إضافة صورة</button>
+    </div>
+    <div id="projDrawingSection" style="display:none">
+      <div class="alert alert-info" style="display:block;"><i class="fas fa-paint-brush"></i> اختبار رسم - المريض سيرسم على قماش</div>
+    </div>
+    <button class="btn btn-primary" onclick="saveNewProjectiveTest()" style="margin-top:1rem;width:100%;"><i class="fas fa-save"></i> حفظ</button>
+  </div>`;
+  document.body.appendChild(modal);
+  const ts = document.getElementById('projTestType');
+  const is = document.getElementById('projImagesSection');
+  const ds = document.getElementById('projDrawingSection');
+  ts.addEventListener('change', function() {
+    if (this.value === 'images') { is.style.display = 'block'; ds.style.display = 'none'; }
+    else { is.style.display = 'none'; ds.style.display = 'block'; }
+  });
+  generateProjImageFields(3);
+}
+
+function addProjImageUploadField() {
+  const c = document.getElementById('projImageUploadsContainer');
+  const idx = Date.now() + Math.random();
+  const div = document.createElement('div');
+  div.className = 'form-group';
+  div.id = `projUploadDiv_${idx}`;
+  div.innerHTML = `<div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;">
+    <input type="file" accept="image/*" id="projImgFile_${idx}" class="proj-image-file-input" style="flex:1">
+    <button type="button" class="btn btn-danger btn-sm" onclick="document.getElementById('projUploadDiv_${idx}').remove()"><i class="fas fa-trash"></i></button>
+  </div>
+  <div id="projImgPreview_${idx}" style="margin-top:.5rem;display:none;"><img style="max-width:100px;border-radius:8px;"></div>`;
+  c.appendChild(div);
+  const fi = document.getElementById(`projImgFile_${idx}`);
+  fi.addEventListener('change', function(e) {
+    const pv = document.getElementById(`projImgPreview_${idx}`);
+    if (this.files && this.files[0]) {
+      const r = new FileReader();
+      r.onload = function(ev) { pv.style.display = 'block'; pv.querySelector('img').src = ev.target.result; };
+      r.readAsDataURL(this.files[0]);
+    }
+  });
+}
+
+function generateProjImageFields(count) {
+  const c = document.getElementById('projImageUploadsContainer');
+  if (!c) return;
+  c.innerHTML = '';
+  for (let i = 0; i < count; i++) addProjImageUploadField();
+}
+
+async function saveNewProjectiveTest() {
+  const name = document.getElementById('projTestName')?.value.trim();
+  const cat = document.getElementById('projTestCategory')?.value.trim() || 'إسقاطي';
+  const desc = document.getElementById('projTestDesc')?.value.trim() || '';
+  const tt = document.getElementById('projTestType')?.value;
+  if (!name) { alert('⚠️ أدخل اسم الاختبار'); return; }
+  let images = [];
+  const isDrawing = tt === 'drawing';
+  if (!isDrawing) {
+    const inputs = document.querySelectorAll('.proj-image-file-input');
+    if (inputs.length === 0) { alert('⚠️ أضف صورة على الأقل'); return; }
+    for (let input of inputs) {
+      if (input.files && input.files[0]) {
+        images.push(await readFileAsDataURL(input.files[0]));
+      }
+    }
+    if (images.length === 0) { alert('⚠️ ارفع صورة على الأقل'); return; }
+  }
+  const newId = 'proj_' + Date.now();
+  projectiveTestsList.push({ id: newId, name, category: cat, imageCount: images.length, isProjective: true, description: desc, images, isDrawingTest: isDrawing, createdAt: new Date().toISOString() });
+  saveAllData();
+  showNotification(`✅ تم إضافة "${name}"`, 'success');
+  document.querySelector('.modal.active')?.remove();
+  loadTab('tests');
+}
+
+function readFileAsDataURL(file) {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(r.result);
+    r.onerror = reject;
+    r.readAsDataURL(file);
+  });
+}
+
+function deleteProjectiveTest(id) {
+  if (confirm('حذف الاختبار؟')) {
+    projectiveTestsList = projectiveTestsList.filter(t => t.id !== id);
+    saveAllData();
+    showNotification('✅ تم الحذف', 'success');
+    loadTab('tests');
+  }
+}
+
+function selectPatientForProjectiveTest(tid, tname, ti, isDrawing) {
+  if (users.length === 0) { alert('⚠️ لا يوجد مرضى'); return; }
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <h2>${tname}</h2>
+    <div class="form-group"><label>اختر المريض</label><select id="projPatientSelect">
+      ${users.map(p => `<option value="${p.id}">${p.name} (${p.age} سنة)</option>`).join('')}
+    </select></div>
+    <button class="btn btn-primary" onclick="startProjectiveTest('${tid}', '${tname}', ${ti}, ${isDrawing})">بدء</button>
+  </div>`;
+  document.body.appendChild(modal);
+}
+
+function startProjectiveTest(tid, tname, ti, isDrawing) {
+  const sel = document.getElementById('projPatientSelect');
+  const pid = parseInt(sel.value);
+  const pname = sel.options[sel.selectedIndex]?.text.split('(')[0].trim();
+  const test = projectiveTestsList.find(t => t.id === tid);
+  if (isDrawing) {
+    const modal = document.querySelector('.modal.active');
+    if (modal) modal.innerHTML = `<div class="modal-content" style="max-width:800px;">
+      <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+      <h2>${tname}</h2>
+      <p><strong>المريض: ${pname}</strong></p>
+      <div class="alert alert-info" style="display:block;">✏️ ارسم ${tname.includes('رجل') ? 'رجل' : 'شجرة'}</div>
+      <canvas id="drawCanvas" width="500" height="400" style="width:100%;border:2px solid #bbf7d0;border-radius:16px;background:#fff;"></canvas>
+      <div class="drawing-controls">
+        <button class="btn btn-outline btn-sm" onclick="clearDrawingCanvas()"><i class="fas fa-trash"></i> مسح</button>
+        <button class="btn btn-outline btn-sm" onclick="changeDrawColor()"><i class="fas fa-palette"></i> لون</button>
+      </div>
+      <div class="form-group"><label>📝 تفسير المريض:</label><textarea id="drawInterpret" class="problem-textarea" rows="3"></textarea></div>
+      <button class="btn btn-primary" onclick="saveDrawingTestResult('${tid}', '${tname}', ${pid}, '${pname}')">حفظ</button>
+    </div>`;
+    initDrawingCanvas();
+  } else {
+    const images = test?.images || [];
+    let currentIndex = 0;
+    const answers = [];
+    function renderPlate(index) {
+      if (index >= images.length) {
+        const modal = document.querySelector('.modal.active');
+        if (modal) modal.innerHTML = `<div class="modal-content">
+          <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+          <h2>${tname}</h2>
+          <p><strong>المريض: ${pname}</strong></p>
+          <div class="alert alert-info" style="display:block;">📖 التحليل النهائي</div>
+          <div class="form-group"><label>📝 تحليل المختص:</label><textarea id="finalAnalysis" class="problem-textarea" rows="5"></textarea></div>
+          <button class="btn btn-primary" onclick="window.saveProjResult()">حفظ</button>
+        </div>`;
+        window.saveProjResult = () => {
+          const analysis = document.getElementById('finalAnalysis')?.value.trim() || '';
+          testResults.push({ id: Date.now(), test_id: tid, test_name: tname, patient_id: pid, patient_name: pname, specialist_id: currentSpecialist.id, answers, analysis, date: new Date().toISOString() });
+          saveAllData();
+          showNotification(`✅ تم حفظ ${tname}`, 'success');
+          document.querySelector('.modal.active')?.remove();
+          loadTab('tests');
+        };
+        return;
+      }
+      const img = images[index];
+      const modal = document.querySelector('.modal.active');
+      if (modal) modal.innerHTML = `<div class="modal-content">
+        <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+        <h2>${tname}</h2>
+        <p><strong>المريض: ${pname}</strong> | صورة ${index+1}/${images.length}</p>
+        <div style="text-align:center;"><img src="${img}" class="projective-image" style="max-height:400px;"></div>
+        <div class="form-group"><label>📝 ماذا ترى؟</label><textarea id="plateAnswer" class="problem-textarea" rows="3"></textarea></div>
+        <div style="display:flex;justify-content:space-between;">
+          <button class="btn btn-outline" onclick="window.prevProjPlate()" ${index === 0 ? 'disabled' : ''}>السابق</button>
+          <button class="btn btn-primary" onclick="window.nextProjPlate()">التالي</button>
+        </div>
+      </div>`;
+      window.nextProjPlate = () => {
+        const a = document.getElementById('plateAnswer')?.value.trim();
+        if (!a) { alert('⚠️ أدخل وصفاً'); return; }
+        answers.push({ num: index+1, answer: a });
+        renderPlate(index+1);
+      };
+      window.prevProjPlate = () => { if (index > 0) { answers.pop(); renderPlate(index-1); } };
+    }
+    renderPlate(0);
+  }
+}
+
+function initDrawingCanvas() {
+  drawingCanvas = document.getElementById('drawCanvas');
+  if (!drawingCanvas) return;
+  drawingCtx = drawingCanvas.getContext('2d');
+  drawingCtx.fillStyle = '#fff';
+  drawingCtx.fillRect(0, 0, drawingCanvas.width, drawingCanvas.height);
+  drawingCtx.strokeStyle = drawingColor;
+  drawingCtx.lineWidth = brushSize;
+  drawingCtx.lineCap = 'round';
+  let isDrawing = false;
+  const getCoords = e => {
+    const rect = drawingCanvas.getBoundingClientRect();
+    const sx = drawingCanvas.width / rect.width, sy = drawingCanvas.height / rect.height;
+    let cx, cy;
+    if (e.touches) { cx = e.touches[0].clientX; cy = e.touches[0].clientY; }
+    else { cx = e.clientX; cy = e.clientY; }
+    return { x: Math.max(0, Math.min(drawingCanvas.width, (cx - rect.left) * sx)), y: Math.max(0, Math.min(drawingCanvas.height, (cy - rect.top) * sy)) };
+  };
+  const start = e => { isDrawing = true; const { x, y } = getCoords(e); drawingCtx.beginPath(); drawingCtx.moveTo(x, y); drawingCtx.lineTo(x, y); drawingCtx.stroke(); e.preventDefault(); };
+  const draw = e => { if (!isDrawing) return; const { x, y } = getCoords(e); drawingCtx.lineTo(x, y); drawingCtx.stroke(); drawingCtx.beginPath(); drawingCtx.moveTo(x, y); e.preventDefault(); };
+  const stop = () => { isDrawing = false; };
+  drawingCanvas.addEventListener('mousedown', start);
+  drawingCanvas.addEventListener('mousemove', draw);
+  drawingCanvas.addEventListener('mouseup', stop);
+  drawingCanvas.addEventListener('mouseleave', stop);
+  drawingCanvas.addEventListener('touchstart', start);
+  drawingCanvas.addEventListener('touchmove', draw);
+  drawingCanvas.addEventListener('touchend', stop);
+}
+
+function clearDrawingCanvas() { if (drawingCtx) { drawingCtx.fillStyle = '#fff'; drawingCtx.fillRect(0, 0, drawingCanvas.width, drawingCanvas.height); drawingCtx.strokeStyle = drawingColor; } }
+function changeDrawColor() { const c = prompt('اللون (hex):', drawingColor); if (c) { drawingColor = c; if (drawingCtx) drawingCtx.strokeStyle = drawingColor; } }
+
+function saveDrawingTestResult(tid, tname, pid, pname) {
+  const img = drawingCanvas?.toDataURL();
+  const interp = document.getElementById('drawInterpret')?.value.trim() || '';
+  testResults.push({ id: Date.now(), test_id: tid, test_name: tname, patient_id: pid, patient_name: pname, specialist_id: currentSpecialist.id, drawing_image: img, interpretation: interp, date: new Date().toISOString() });
+  saveAllData();
+  showNotification(`✅ تم حفظ ${tname}`, 'success');
+  document.querySelector('.modal.active')?.remove();
+  loadTab('tests');
+}
+
+/* ===== الفيديوهات ===== */
+function renderVideos(container) {
+  let html = `<h2><i class="fas fa-video"></i> الفيديوهات التعليمية</h2>
+    <button class="btn btn-primary" onclick="openAddVideoModal()" style="margin-bottom:1rem;"><i class="fas fa-plus"></i> إضافة فيديو</button>
+    <div id="videosList">`;
+  if (specialistVideos.length === 0) html += `<div class="card">📭 لا توجد فيديوهات</div>`;
+  else specialistVideos.forEach((v, i) => {
+    html += `<div class="card" style="cursor:default;"><div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:flex-start;">
+      <div style="flex:1;min-width:200px;"><h4>${escapeHtml(v.title)}</h4><p style="color:#166534;">${escapeHtml(v.description || '')}</p></div>
+      <div style="flex:2;min-width:280px;"><video controls style="width:100%;max-height:200px;border-radius:12px;"><source src="${v.data}" type="${v.fileType || 'video/mp4'}"></video></div>
+      <div><button class="btn btn-danger btn-sm" onclick="deleteVideo(${i})"><i class="fas fa-trash"></i></button></div>
+    </div></div>`;
+  });
+  html += `</div>`;
+  container.innerHTML = html;
+}
+
+function openAddVideoModal() {
+  const modal = document.createElement('div');
+  modal.className = 'modal active';
+  modal.innerHTML = `<div class="modal-content">
+    <span class="modal-close" onclick="this.closest('.modal').remove()">&times;</span>
+    <h2>إضافة فيديو</h2>
+    <div class="form-group"><label>العنوان</label><input type="text" id="videoTitle"></div>
+    <div class="form-group"><label>الوصف</label><textarea id="videoDesc" rows="2"></textarea></div>
+    <div class="form-group"><label>الملف</label><input type="file" id="videoFile" accept="video/*" style="padding:.5rem;border:2px solid #bbf7d0;border-radius:12px;width:100%;"></div>
+    <button class="btn btn-primary" onclick="saveVideoFromFile()" style="width:100%;"><i class="fas fa-save"></i> حفظ</button>
+  </div>`;
+  document.body.appendChild(modal);
+}
+
+function saveVideoFromFile() {
+  const title = document.getElementById('videoTitle')?.value.trim();
+  const desc = document.getElementById('videoDesc')?.value.trim() || '';
+  const fi = document.getElementById('videoFile');
+  if (!title || !fi.files?.[0]) { alert('⚠️ أدخل العنوان والملف'); return; }
+  const file = fi.files[0];
+  const r = new FileReader();
+  r.onload = e => {
+    specialistVideos.push({ id: Date.now(), title, description: desc, data: e.target.result, fileName: file.name, fileType: file.type, date: new Date().toISOString().split('T')[0] });
+    saveAllData();
+    showNotification('✅ تم إضافة الفيديو', 'success');
+    document.querySelector('.modal.active')?.remove();
+    loadTab('videos');
+  };
+  r.readAsDataURL(file);
+}
+
+function deleteVideo(i) { if (confirm('حذف؟')) { specialistVideos.splice(i, 1); saveAllData(); showNotification('✅ تم الحذف', 'success'); loadTab('videos'); } }
+
+/* ===== الألعاب ===== */
+let memoryFlipped = [], memoryMatched = [], memoryLocked = false;
+let puzzleState = [], puzzleEmpty = 8;
+
+function renderGames(container) {
+  let html = `<h2><i class="fas fa-gamepad"></i> الألعاب التعليمية</h2>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;">
+      <button class="btn btn-primary" onclick="startMemoryGame()"><i class="fas fa-brain"></i> لعبة الذاكرة</button>
+      <button class="btn btn-primary" onclick="startPuzzleGame()"><i class="fas fa-puzzle-piece"></i> لغز الأرقام</button>
+    </div>
+    <div id="gamePlayArea" style="padding:1rem;background:#f0fdf4;border-radius:16px;min-height:200px;text-align:center;">
+      <p style="color:#166534;">اختر لعبة للعب</p>
+    </div>`;
+  container.innerHTML = html;
+}
+
+function startMemoryGame() {
+  const area = document.getElementById('gamePlayArea');
+  if (!area) return;
+  const emojis = ['🍎','🍌','🍇','🍉','🍊','🍋','🍓','🍒'];
+  const shuffled = [...emojis, ...emojis].sort(() => Math.random() - 0.5);
+  memoryFlipped = []; memoryMatched = []; memoryLocked = false;
+  let html = `<h3 style="margin-bottom:1rem;">🧠 لعبة الذاكرة</h3><div class="memory-grid">`;
+  shuffled.forEach((emoji, idx) => { html += `<div class="memory-card" data-index="${idx}" data-emoji="${emoji}" onclick="flipMemoryCard(this)">❓</div>`; });
+  html += `</div><button class="btn btn-outline" onclick="startMemoryGame()" style="margin-top:1rem;"><i class="fas fa-redo"></i> إعادة</button>`;
+  area.innerHTML = html;
+}
+
+function flipMemoryCard(el) {
+  if (memoryLocked) return;
+  if (memoryFlipped.length >= 2) return;
+  if (memoryMatched.includes(el.dataset.index)) return;
+  if (memoryFlipped.includes(el.dataset.index)) return;
+  el.textContent = el.dataset.emoji;
+  el.classList.add('flipped');
+  memoryFlipped.push(el.dataset.index);
+  if (memoryFlipped.length === 2) {
+    memoryLocked = true;
+    const [i1, i2] = memoryFlipped;
+    const e1 = document.querySelector(`.memory-card[data-index="${i1}"]`).dataset.emoji;
+    const e2 = document.querySelector(`.memory-card[data-index="${i2}"]`).dataset.emoji;
+    if (e1 === e2) {
+      memoryMatched.push(i1, i2);
+      document.querySelector(`.memory-card[data-index="${i1}"]`).classList.add('matched');
+      document.querySelector(`.memory-card[data-index="${i2}"]`).classList.add('matched');
+      memoryFlipped = []; memoryLocked = false;
+      if (memoryMatched.length === 16) showNotification('🎉 فزت!', 'success');
+    } else {
+      setTimeout(() => {
+        document.querySelector(`.memory-card[data-index="${i1}"]`).textContent = '❓';
+        document.querySelector(`.memory-card[data-index="${i1}"]`).classList.remove('flipped');
+        document.querySelector(`.memory-card[data-index="${i2}"]`).textContent = '❓';
+        document.querySelector(`.memory-card[data-index="${i2}"]`).classList.remove('flipped');
+        memoryFlipped = []; memoryLocked = false;
+      }, 800);
+    }
+  }
+}
+
+function startPuzzleGame() {
+  const area = document.getElementById('gamePlayArea');
+  if (!area) return;
+  let nums = [1,2,3,4,5,6,7,8,0];
+  do { nums = shuffleArr([1,2,3,4,5,6,7,8,0]); } while (!isSolvable(nums));
+  puzzleState = nums;
+  puzzleEmpty = puzzleState.indexOf(0);
+  renderPuzzle(area);
+}
+
+function shuffleArr(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function isSolvable(a) { let inv = 0; for (let i = 0; i < 9; i++) for (let j = i+1; j < 9; j++) if (a[i] && a[j] && a[i] > a[j]) inv++; return inv % 2 === 0; }
+
+function renderPuzzle(area) {
+  let html = `<h3 style="margin-bottom:1rem;">🧩 لغز الأرقام</h3><div class="puzzle-grid">`;
+  puzzleState.forEach((n, idx) => {
+    if (n === 0) html += `<div class="puzzle-tile empty" data-index="${idx}"></div>`;
+    else html += `<div class="puzzle-tile" data-index="${idx}" onclick="movePuzzleTile(${idx})">${n}</div>`;
+  });
+  html += `</div><button class="btn btn-outline" onclick="startPuzzleGame()" style="margin-top:1rem;"><i class="fas fa-redo"></i> إعادة</button>`;
+  if (isPuzzleSolved()) html += `<div class="alert alert-success" style="display:block;margin-top:1rem;">🎉 حللت اللغز!</div>`;
+  area.innerHTML = html;
+}
+
+function movePuzzleTile(idx) {
+  if (isPuzzleSolved()) return;
+  const r1 = Math.floor(idx / 3), c1 = idx % 3;
+  const r2 = Math.floor(puzzleEmpty / 3), c2 = puzzleEmpty % 3;
+  if (Math.abs(r1 - r2) + Math.abs(c1 - c2) === 1) {
+    [puzzleState[idx], puzzleState[puzzleEmpty]] = [puzzleState[puzzleEmpty], puzzleState[idx]];
+    puzzleEmpty = idx;
+    renderPuzzle(document.getElementById('gamePlayArea'));
+  }
+}
+
+function isPuzzleSolved() {
+  for (let i = 0; i < 8; i++) if (puzzleState[i] !== i + 1) return false;
+  return puzzleState[8] === 0;
+}
+
+/* ===== تشغيل ===== */
+loadStoredData();
+</script>
+</body>
+</html>
